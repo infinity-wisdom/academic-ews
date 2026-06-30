@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Academic EWS Admin Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#bac3ff",
+                        "surface-container-highest": "#e4e2e4",
+                        "on-secondary-fixed-variant": "#293ca0",
+                        "on-secondary-container": "#11278e",
+                        "on-background": "#1b1b1d",
+                        "secondary-fixed": "#dee0ff",
+                        "tertiary": "#001339",
+                        "tertiary-container": "#002662",
+                        "inverse-surface": "#303032",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fbf8fa",
+                        "on-tertiary-fixed": "#001945",
+                        "surface-container-low": "#f5f3f5",
+                        "on-tertiary-fixed-variant": "#00419d",
+                        "on-error": "#ffffff",
+                        "surface": "#fbf8fa",
+                        "on-primary-fixed": "#0f1c2f",
+                        "outline-variant": "#c5c6cd",
+                        "on-secondary-fixed": "#00105c",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e4e2e4",
+                        "on-surface": "#1b1b1d",
+                        "secondary-container": "#8596ff",
+                        "tertiary-fixed": "#d9e2ff",
+                        "on-primary-container": "#8591aa",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#d7e3fe",
+                        "surface-container-high": "#eae7e9",
+                        "error-container": "#ffdad6",
+                        "outline": "#75777d",
+                        "background": "#fbf8fa",
+                        "surface-container": "#f0edef",
+                        "secondary": "#4355b9",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dcd9db",
+                        "primary-container": "#1e2a3e",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#b0c6ff",
+                        "surface-tint": "#535f75",
+                        "inverse-on-surface": "#f2f0f2",
+                        "on-surface-variant": "#44474d",
+                        "on-primary-fixed-variant": "#3b475c",
+                        "inverse-primary": "#bbc7e1",
+                        "primary": "#091529",
+                        "on-tertiary-container": "#578dff",
+                        "primary-fixed-dim": "#bbc7e1",
+                        "admin-indigo": "#3F51B5",
+                        "admin-bg": "#F8F9FA"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "card": "12px"
+                    },
+                    "spacing": {
+                        "topbar-height": "64px",
+                        "gutter": "24px",
+                        "base": "4px",
+                        "padding-card": "24px",
+                        "sidebar-collapsed": "72px",
+                        "sidebar-expanded": "260px"
+                    },
+                    "fontFamily": {
+                        "headline-h2": ["Inter"],
+                        "caption-xs": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-h1-mobile": ["Inter"],
+                        "headline-h1": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-h3": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-h2": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "caption-xs": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-h1-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }],
+                        "headline-h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "headline-h3": ["18px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    },
+                    "boxShadow": {
+                        "card": "0 2px 8px rgba(0,0,0,0.08)"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .input-focus:focus {
+            border-color: #0A58CA;
+            box-shadow: 0 0 0 4px rgba(10, 88, 202, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-admin-bg min-h-screen flex items-center justify-center font-body-md text-on-surface">
+<main class="w-full max-w-md px-gutter">
+<div class="bg-surface-container-lowest rounded-card shadow-card p-padding-card">
+<!-- Header Section -->
+<div class="text-center mb-8">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-admin-indigo/10 mb-4">
+<span class="material-symbols-outlined text-admin-indigo text-4xl" data-weight="fill" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<h1 class="font-headline-h1 text-headline-h1 text-on-surface mb-2">Academic EWS Admin Portal</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Secure administrative access only</p>
+</div>
+<!-- Login Form -->
+<form action="#" class="space-y-5" method="POST" onsubmit="return false;">
+<!-- Username / Email -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface mb-1" for="username">Username or Email</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">person</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder-on-surface-variant input-focus transition-all duration-200 outline-none" id="username" name="username" placeholder="admin@institution.edu" required="" type="text"/>
+</div>
+</div>
+<!-- Password -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface mb-1" for="password">Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">lock</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder-on-surface-variant input-focus transition-all duration-200 outline-none" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Security Token -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface mb-1" for="token">Security Token</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">key</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder-on-surface-variant input-focus transition-all duration-200 outline-none" id="token" name="token" placeholder="Enter 6-digit MFA code" required="" type="text"/>
+</div>
+</div>
+<!-- Remember Me & Forgot Password (Optional, good practice) -->
+<div class="flex items-center justify-between mt-2">
+<div class="flex items-center">
+<input class="h-4 w-4 text-admin-indigo border-outline-variant rounded outline-none focus:ring-2 focus:ring-admin-indigo/20" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-2 block font-label-sm text-label-sm text-on-surface-variant" for="remember-me">
+                            Remember device
+                        </label>
+</div>
+<div class="text-sm">
+<a class="font-label-sm text-label-sm text-admin-indigo hover:text-admin-indigo/80" href="#">Forgot password?</a>
+</div>
+</div>
+<!-- Submit Button -->
+<div class="pt-2">
+<button class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm font-label-sm text-label-sm text-white bg-admin-indigo hover:bg-admin-indigo/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-admin-indigo transition-colors duration-200" onclick="window.location.href='admin-panel.html'" type="submit">
+                        Login to Admin Dashboard
+                    </button>
+</div>
+</form>
+<!-- Footer -->
+<div class="mt-8 text-center">
+<p class="font-caption-xs text-caption-xs text-outline flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]">info</span>
+                    Internal System • Restricted Access
+                </p>
+</div>
+</div>
+</main>
+</body></html>

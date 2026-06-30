@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduTrack - Academic Reports</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#8591aa",
+                        "outline-variant": "#c5c6cd",
+                        "surface-variant": "#e4e2e4",
+                        "surface-container-high": "#eae7e9",
+                        "secondary-fixed": "#dee0ff",
+                        "on-secondary-fixed-variant": "#293ca0",
+                        "tertiary-container": "#002662",
+                        "on-secondary-container": "#11278e",
+                        "surface-container-low": "#f5f3f5",
+                        "secondary": "#4355b9",
+                        "surface-tint": "#535f75",
+                        "outline": "#75777d",
+                        "on-tertiary-fixed": "#001945",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#00105c",
+                        "inverse-surface": "#303032",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#d9e2ff",
+                        "surface-container": "#f0edef",
+                        "secondary-container": "#8596ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#44474d",
+                        "primary-fixed-dim": "#bbc7e1",
+                        "on-background": "#1b1b1d",
+                        "on-tertiary-fixed-variant": "#00419d",
+                        "surface-bright": "#fbf8fa",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#bbc7e1",
+                        "secondary-fixed-dim": "#bac3ff",
+                        "primary-fixed": "#d7e3fe",
+                        "on-tertiary-container": "#578dff",
+                        "on-primary-fixed": "#0f1c2f",
+                        "inverse-on-surface": "#f2f0f2",
+                        "error": "#ba1a1a",
+                        "on-surface": "#1b1b1d",
+                        "background": "#fbf8fa",
+                        "tertiary": "#001339",
+                        "surface-container-highest": "#e4e2e4",
+                        "on-primary-fixed-variant": "#3b475c",
+                        "surface": "#fbf8fa",
+                        "primary-container": "#1e2a3e",
+                        "primary": "#091529",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#b0c6ff",
+                        "surface-dim": "#dcd9db"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "sidebar-expanded": "260px",
+                        "sidebar-collapsed": "72px",
+                        "base": "4px",
+                        "topbar-height": "64px",
+                        "padding-card": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-h1-mobile": ["Inter"],
+                        "caption-xs": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-h1": ["Inter"],
+                        "headline-h3": ["Inter"],
+                        "headline-h2": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-h1-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }],
+                        "caption-xs": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "headline-h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-h3": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-h2": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background h-full font-sans antialiased overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-screen w-sidebar-expanded bg-primary dark:bg-primary shadow-sm flex flex-col h-full z-50">
+<!-- Brand -->
+<div class="px-6 h-topbar-height flex items-center shrink-0">
+<div class="flex items-center gap-3">
+<img class="h-8 w-8 rounded object-cover" data-alt="A minimalist, modern educational technology logo consisting of geometric shapes forming an abstract open book, utilizing a deep navy and crisp white color palette, suitable for a professional corporate dashboard context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGKoQe6LTonOQOfE0dLnLD9zIoiN52-PeZNIQMdv0Xpj8xeBYzYDu-5yuTDTC_eCvuq7IiPQL6axKzi91KAxEdVpL9C_ZyTiUhXqcSrCxSpgYiXJFBxlkLi3T-V7oAjcbOwE9ULo1YwkvZ0HMVA29XQ4GdnlqaM0pVPvv0Vq3MEe2aqLQIHp5Os0YkSQ-k_bipWgiGMmuwHVO01rMLZjmS7n-Bi5Z9JY8-SCYCOWOMSVvC5CexzzFSjPls1Xquwn_pLgQ0qxmAKWY"/>
+<div>
+<h1 class="font-headline-h2 text-headline-h2 text-surface-container-lowest m-0 p-0 leading-none">EduTrack</h1>
+<span class="font-caption-xs text-caption-xs text-on-primary-container leading-none block mt-1">Academic Warning System</span>
+</div>
+</div>
+</div>
+<!-- CTA -->
+<div class="px-4 py-4 shrink-0">
+<button class="w-full bg-secondary hover:bg-[#344599] text-white font-label-sm text-label-sm py-2.5 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-[0_2px_8px_rgba(0,0,0,0.08)] cursor-pointer active:scale-95">
+<span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+                New Intervention
+            </button>
+</div>
+<!-- Navigation Tabs -->
+<div class="flex-1 overflow-y-auto py-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95 group" href="advisor-dashboard.html">
+<span class="material-symbols-outlined text-on-primary-container group-hover:text-surface-container-lowest transition-colors">dashboard</span>
+<span class="font-label-sm text-label-sm group-hover:text-surface-container-lowest transition-colors">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95 group" href="student-profile.html">
+<span class="material-symbols-outlined text-on-primary-container group-hover:text-surface-container-lowest transition-colors">school</span>
+<span class="font-label-sm text-label-sm group-hover:text-surface-container-lowest transition-colors">Students</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95 group" href="analytics.html">
+<span class="material-symbols-outlined text-on-primary-container group-hover:text-surface-container-lowest transition-colors">analytics</span>
+<span class="font-label-sm text-label-sm group-hover:text-surface-container-lowest transition-colors">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95 group" href="interventions.html">
+<span class="material-symbols-outlined text-on-primary-container group-hover:text-surface-container-lowest transition-colors">emergency_home</span>
+<span class="font-label-sm text-label-sm group-hover:text-surface-container-lowest transition-colors">Interventions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-white/10 border-l-4 border-secondary text-surface-container-lowest cursor-pointer active:scale-95" href="reports.html">
+<span class="material-symbols-outlined text-surface-container-lowest">assessment</span>
+<span class="font-label-sm text-label-sm">Reports</span>
+</a>
+</div>
+<!-- Footer Tabs -->
+<div class="shrink-0 pb-4 pt-2 mt-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95 group" href="settings.html">
+<span class="material-symbols-outlined text-on-primary-container group-hover:text-surface-container-lowest transition-colors">settings</span>
+<span class="font-label-sm text-label-sm group-hover:text-surface-container-lowest transition-colors">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95 group" href="settings.html">
+<span class="material-symbols-outlined text-on-primary-container group-hover:text-surface-container-lowest transition-colors">help</span>
+<span class="font-label-sm text-label-sm group-hover:text-surface-container-lowest transition-colors">Support</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-sidebar-expanded flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 h-topbar-height z-40 bg-surface-container-lowest dark:bg-surface-container-low border-b border-outline-variant shadow-sm flex justify-between items-center px-gutter w-[calc(100%-260px)] ml-auto shrink-0">
+<!-- Search -->
+<div class="flex-1 max-w-md">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-secondary transition-colors" style="font-size: 20px;">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all placeholder-on-surface-variant/50 h-10" placeholder="Search students, reports..." type="text"/>
+</div>
+</div>
+<!-- Actions & Profile -->
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors rounded-full cursor-pointer relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors rounded-full cursor-pointer">
+<span class="material-symbols-outlined">mail</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<button class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
+<img alt="User Avatar" class="h-9 w-9 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of an academic advisor or university administrator in modern business casual attire, well-lit in a corporate office setting, bright and approachable mood, corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzWmZ7-ULN-Dj-gGCiWDAbDTMus0n1pwh_G1Mj2UWwc3GtOr5sdhmjdLvFfrzyjms30UyblxiBPAI8cqWxnuSSyuKGX1p3XYB4RTC6efmFEMQCSATF6KhlKswc9C66EHr9-zYdWUMJSN7d5okuE7nP1mXLkf6nZKXrlJmFlin3udMTUPI7iipE7h0MGkU5iJGz0tDt64pWFvikyLzjKexzGIwk0za1hU4Sc4TidDFSLGKA9vPP0eJ4haz-VdXUWfe9uNPudit0MaM"/>
+</button>
+</div>
+</header>
+<!-- Page Canvas -->
+<main class="flex-1 overflow-y-auto mt-topbar-height bg-surface p-gutter">
+<div class="max-w-[1440px] mx-auto">
+<!-- Page Header -->
+<div class="mb-8">
+<h2 class="font-headline-h1 text-headline-h1 text-on-surface m-0">Academic Reports</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">Generate, view, and export detailed insights on student performance and intervention outcomes.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Column: Report Templates -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="bg-surface-container-lowest rounded-xl p-padding-card shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-6 border-b border-outline-variant pb-4">Standard Report Templates</h3>
+<div class="space-y-4">
+<!-- Template 1 -->
+<div class="flex items-start justify-between p-4 rounded-lg border border-outline-variant hover:border-secondary/50 hover:bg-surface-container-low transition-all group">
+<div class="flex gap-4">
+<div class="h-10 w-10 rounded bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface font-semibold m-0 group-hover:text-secondary transition-colors">At-Risk Student Summary</h4>
+<p class="font-caption-xs text-caption-xs text-on-surface-variant mt-1 mb-0">Comprehensive overview of students currently flagged for academic warning across all monitored departments.</p>
+</div>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<button class="p-2 text-on-surface-variant hover:text-secondary hover:bg-secondary/10 rounded transition-colors" title="Download PDF">
+<span class="material-symbols-outlined" style="font-size: 20px;">picture_as_pdf</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-secondary hover:bg-secondary/10 rounded transition-colors" title="Download CSV">
+<span class="material-symbols-outlined" style="font-size: 20px;">csv</span>
+</button>
+</div>
+</div>
+<!-- Template 2 -->
+<div class="flex items-start justify-between p-4 rounded-lg border border-outline-variant hover:border-secondary/50 hover:bg-surface-container-low transition-all group">
+<div class="flex gap-4">
+<div class="h-10 w-10 rounded bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">stacked_bar_chart</span>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface font-semibold m-0 group-hover:text-secondary transition-colors">Term Performance Comparison</h4>
+<p class="font-caption-xs text-caption-xs text-on-surface-variant mt-1 mb-0">Aggregated grade distributions and attendance trends comparing the current term to historical averages.</p>
+</div>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<button class="p-2 text-on-surface-variant hover:text-secondary hover:bg-secondary/10 rounded transition-colors" title="Download PDF">
+<span class="material-symbols-outlined" style="font-size: 20px;">picture_as_pdf</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-secondary hover:bg-secondary/10 rounded transition-colors" title="Download CSV">
+<span class="material-symbols-outlined" style="font-size: 20px;">csv</span>
+</button>
+</div>
+</div>
+<!-- Template 3 -->
+<div class="flex items-start justify-between p-4 rounded-lg border border-outline-variant hover:border-secondary/50 hover:bg-surface-container-low transition-all group">
+<div class="flex gap-4">
+<div class="h-10 w-10 rounded bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">track_changes</span>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface font-semibold m-0 group-hover:text-secondary transition-colors">Intervention Effectiveness Report</h4>
+<p class="font-caption-xs text-caption-xs text-on-surface-variant mt-1 mb-0">Analysis of post-intervention student trajectories, measuring success rates of advisory meetings and tutoring assignments.</p>
+</div>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<button class="p-2 text-on-surface-variant hover:text-secondary hover:bg-secondary/10 rounded transition-colors" title="Download PDF">
+<span class="material-symbols-outlined" style="font-size: 20px;">picture_as_pdf</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-secondary hover:bg-secondary/10 rounded transition-colors" title="Download CSV">
+<span class="material-symbols-outlined" style="font-size: 20px;">csv</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Custom Builder -->
+<div class="lg:col-span-1">
+<div class="bg-surface-container-lowest rounded-xl p-padding-card shadow-[0_2px_8px_rgba(0,0,0,0.08)] sticky top-6">
+<div class="flex items-center gap-3 mb-6 border-b border-outline-variant pb-4">
+<span class="material-symbols-outlined text-secondary">tune</span>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface m-0">Custom Report Builder</h3>
+</div>
+<form class="space-y-5">
+<!-- Date Range -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide mb-2">Date Range</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-3 pr-10 py-2.5 font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary appearance-none transition-colors">
+<option>Current Term (Fall 2023)</option>
+<option>Previous Term (Spring 2023)</option>
+<option>Academic Year (2022-2023)</option>
+<option>Custom Range...</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Department -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide mb-2">Department / Cohort</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-3 pr-10 py-2.5 font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary appearance-none transition-colors">
+<option>All Departments</option>
+<option>College of Engineering</option>
+<option>College of Liberal Arts</option>
+<option>School of Business</option>
+<option>First-Year Students</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Metrics -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide mb-3">Key Metrics to Include</label>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-secondary transition-colors">Current GPA Distribution</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-secondary transition-colors">Attendance Flags</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-secondary transition-colors">Missed Assignments</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-secondary transition-colors">Financial Aid Status</span>
+</label>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant mt-6">
+<button class="w-full bg-secondary hover:bg-[#344599] text-white font-label-sm text-label-sm py-2.5 rounded-lg flex items-center justify-center gap-2 transition-colors cursor-pointer active:scale-95 shadow-[0_2px_8px_rgba(0,0,0,0.08)]" type="button">
+<span class="material-symbols-outlined" style="font-size: 18px;">magic_button</span>
+                                        Generate Custom Report
+                                    </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

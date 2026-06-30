@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduTrack - My Academic Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-container": "#8591aa",
+                      "outline-variant": "#c5c6cd",
+                      "surface-variant": "#e4e2e4",
+                      "surface-container-high": "#eae7e9",
+                      "secondary-fixed": "#dee0ff",
+                      "on-secondary-fixed-variant": "#293ca0",
+                      "tertiary-container": "#002662",
+                      "on-secondary-container": "#11278e",
+                      "surface-container-low": "#f5f3f5",
+                      "secondary": "#4355b9",
+                      "surface-tint": "#535f75",
+                      "outline": "#75777d",
+                      "on-tertiary-fixed": "#001945",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed": "#00105c",
+                      "inverse-surface": "#303032",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#d9e2ff",
+                      "surface-container": "#f0edef",
+                      "secondary-container": "#8596ff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#44474d",
+                      "primary-fixed-dim": "#bbc7e1",
+                      "on-background": "#1b1b1d",
+                      "on-tertiary-fixed-variant": "#00419d",
+                      "surface-bright": "#fbf8fa",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#bbc7e1",
+                      "secondary-fixed-dim": "#bac3ff",
+                      "primary-fixed": "#d7e3fe",
+                      "on-tertiary-container": "#578dff",
+                      "on-primary-fixed": "#0f1c2f",
+                      "inverse-on-surface": "#f2f0f2",
+                      "error": "#ba1a1a",
+                      "on-surface": "#1b1b1d",
+                      "background": "#fbf8fa",
+                      "tertiary": "#001339",
+                      "surface-container-highest": "#e4e2e4",
+                      "on-primary-fixed-variant": "#3b475c",
+                      "surface": "#fbf8fa",
+                      "primary-container": "#1e2a3e",
+                      "primary": "#091529",
+                      "on-primary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed-dim": "#b0c6ff",
+                      "surface-dim": "#dcd9db"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "sidebar-expanded": "260px",
+                      "sidebar-collapsed": "72px",
+                      "base": "4px",
+                      "topbar-height": "64px",
+                      "padding-card": "24px"
+              },
+              "fontFamily": {
+                      "headline-h1-mobile": [
+                              "Inter"
+                      ],
+                      "caption-xs": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-h1": [
+                              "Inter"
+                      ],
+                      "headline-h3": [
+                              "Inter"
+                      ],
+                      "headline-h2": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-h1-mobile": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "caption-xs": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-h1": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-h3": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-h2": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen antialiased flex overflow-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-sidebar-expanded bg-primary dark:bg-primary shadow-sm hidden md:flex flex-col z-50">
+<!-- Header -->
+<div class="h-topbar-height flex items-center px-6 border-b border-white/10">
+<div class="w-8 h-8 rounded bg-secondary flex items-center justify-center mr-3 shrink-0">
+<span class="material-symbols-outlined text-white text-xl" data-icon="school" data-weight="fill">school</span>
+</div>
+<div>
+<h1 class="font-headline-h2 text-headline-h2 text-surface-container-lowest tracking-tight">EduTrack</h1>
+<p class="font-caption-xs text-caption-xs text-on-primary-container leading-none mt-0.5">Student Portal</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 overflow-y-auto py-6 flex flex-col gap-1 px-3">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 rounded-lg group" href="advisor-dashboard.html">
+<span class="material-symbols-outlined group-hover:text-white transition-colors" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm group-hover:text-white transition-colors">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-white/10 border-l-4 border-secondary text-surface-container-lowest rounded-r-lg group" href="profile.html">
+<span class="material-symbols-outlined" data-icon="person" data-weight="fill">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 rounded-lg group" href="settings.html">
+<span class="material-symbols-outlined group-hover:text-white transition-colors" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm group-hover:text-white transition-colors">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 rounded-lg group" href="settings.html">
+<span class="material-symbols-outlined group-hover:text-white transition-colors" data-icon="help">help</span>
+<span class="font-label-sm text-label-sm group-hover:text-white transition-colors">Support</span>
+</a>
+</nav>
+<!-- Student ID Badge (Bottom of Sidebar) -->
+<div class="p-6 border-t border-white/10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white/20 overflow-hidden shrink-0 border border-white/30">
+<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="A close up, high quality studio portrait photograph of a young college student looking directly at the camera with a neutral but confident expression. The lighting is soft, natural, and flattering. The background is a slightly blurred, light neutral grey, ensuring the focus remains entirely on the student's face. The image is brightly lit, adhering to a modern light-mode aesthetic, and conveys a sense of professionalism and academic focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKJrRDWuCRH9U5XwXFQHoU3HCECjXJDDsNKU1CBe2V9arDUo4up3r6QOM5lQn5cF7vE8DcHKmSO1_WsrUWxlYq0hNiabemiOniWyuosOZyLj_WzSzJHHBOvyn0yDko70_liPspqAbAXcIiPPUPDg6q7GT6Bv-d7_8Y9KyWeOdyFVXwySg_7FJcDdR4fH0aQNiVGuFmjNPRnVytufayDJoUlf00ND6-dN06hDlLSpTdMw5Dt0-wag58DY8TLAe6xjUDfOYJyIGOLNE"/>
+</div>
+<div class="overflow-hidden">
+<p class="font-label-sm text-label-sm text-surface-container-lowest truncate">Alex Johnson</p>
+<p class="font-caption-xs text-caption-xs text-on-primary-container truncate">ID: 987654321</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-[260px] min-w-0 bg-surface">
+<!-- TopNavBar -->
+<header class="h-topbar-height bg-surface-container-lowest dark:bg-surface-container-low border-b border-outline-variant shadow-sm flex items-center justify-between px-gutter sticky top-0 z-40">
+<!-- Mobile Menu Button -->
+<button class="md:hidden text-on-surface-variant hover:bg-surface-container p-2 rounded-lg transition-colors cursor-pointer mr-4">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<!-- Page Title -->
+<div class="flex items-center">
+<h2 class="font-headline-h3 text-headline-h3 text-primary hidden md:block">My Academic Profile</h2>
+<h2 class="font-headline-h3 text-headline-h3 text-primary md:hidden">EduTrack</h2>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-4 ml-auto">
+<button class="text-on-surface-variant hover:bg-surface-container p-2 rounded-full transition-colors cursor-pointer relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border border-surface-container-lowest"></span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container p-2 rounded-full transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant ml-2 cursor-pointer md:hidden">
+<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="A high quality, softly lit portrait of a young college student with a confident, neutral expression, set against a light grey background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOljOlGW339-VkEUrpW-mX-bOfWixjKABVhj-OkRC-wPcPxWXj5FMsCLun2V81OowrEhRuhI5xzb5ZBLZX1Sw_qCIHa-oFPpsuoOuHckawmNknzMQ2fBppn4JUikbDIjD73WSYumJbtEbPTdVPxgspWkjQdqgcQS6Ifh239upV-bvqXBl7fXDXDngBPIqXX4sucL3FMZg6cFIvB_Ax7Koo603vPpq5d-ubX5b6V9XUenTXT5FZUgHB6d82GQW2koj5wOovS2NKXgg"/>
+</div>
+</div>
+</header>
+<!-- Scrollable Content Canvas -->
+<main class="flex-1 overflow-y-auto p-gutter relative">
+<div class="max-w-[1200px] mx-auto space-y-6">
+<!-- Header Section: Student Info Card -->
+<div class="bg-surface-container-lowest rounded-xl p-padding-card shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-outline-variant/30 flex flex-col md:flex-row gap-6 items-start md:items-center relative overflow-hidden">
+<!-- Decorative Background Element -->
+<div class="absolute top-0 right-0 w-64 h-full bg-gradient-to-l from-primary-fixed/20 to-transparent pointer-events-none"></div>
+<div class="w-24 h-24 rounded-full overflow-hidden border-4 border-surface-container-lowest shadow-sm shrink-0 z-10 relative">
+<img alt="Alex Johnson Avatar" class="w-full h-full object-cover" data-alt="A professional studio portrait of a young university student. The student has a focused, calm demeanor. The lighting is high-key and soft, typical of modern corporate or academic headshots. The background is a clean, very light grey to ensure high contrast with the subject. The overall aesthetic is clean, bright, and optimistic, fitting a modern educational platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu_FQe21E15wsyduPpAD8bTEQKg53GhK_mwzWChmOYh7PzFNVCKAs6If0K2slhMgJ9TIceC4oYowJ2eA7jl1Gn-4vgEwwl7D-WO3Ha1ISvr1YdRpqs3oO8EU8WJoJv_VNZt-nwnrnYM4dPM1Gob32Xc09woCYQLh_3utjNHQubNFcPN_wbG0zSPekU2gYsWCnw9W6yY3pJPhbCIlYkqw3UslZ-4HWquLB7xNZ6U60maiwNnsVTcT2KqX0MRYzNBt59npjvmdv83E0"/>
+</div>
+<div class="flex-1 z-10">
+<div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-2">
+<h2 class="font-headline-h1 text-headline-h1 md:text-[32px] md:leading-[40px] text-primary">Alex Johnson</h2>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-caption-xs font-medium bg-secondary-fixed text-on-secondary-fixed-variant border border-secondary-fixed-dim self-start md:self-auto">
+                                Sophomore
+                            </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="badge">badge</span>
+<span class="font-label-sm text-label-sm">ID: 987654321</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="book">book</span>
+<span class="font-label-sm text-label-sm">Major: Computer Science</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-sm text-label-sm">Class of 2026</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout for Main Content -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Column (Wider) -->
+<div class="lg:col-span-2 space-y-6">
+<!-- Academic Overview (Glassmorphism-inspired Stats) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- GPA Card -->
+<div class="bg-surface-container-lowest rounded-xl p-padding-card shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-outline-variant/30 flex flex-col justify-between">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Current GPA</h3>
+<div class="w-8 h-8 rounded-full bg-secondary-fixed/50 flex items-center justify-center text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined text-sm" data-icon="grade">grade</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-h1 text-[36px] leading-[44px] text-primary">3.4</span>
+<span class="font-body-md text-on-surface-variant">/ 4.0</span>
+</div>
+<div class="mt-4 flex items-center gap-2 text-caption-xs font-medium text-surface-tint">
+<span class="material-symbols-outlined text-[14px] text-green-600">trending_up</span>
+<span class="text-green-600">+0.2 from last semester</span>
+</div>
+</div>
+<!-- Credits Card -->
+<div class="bg-surface-container-lowest rounded-xl p-padding-card shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-outline-variant/30 flex flex-col justify-between">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Credits Earned</h3>
+<div class="w-8 h-8 rounded-full bg-primary-fixed/50 flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined text-sm" data-icon="school">school</span>
+</div>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-h1 text-[36px] leading-[44px] text-primary">45</span>
+</div>
+<div class="mt-4">
+<div class="flex justify-between font-caption-xs text-on-surface-variant mb-1">
+<span>Progress to Graduation</span>
+<span>37.5%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 37.5%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Current Courses List -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-outline-variant/30 overflow-hidden flex flex-col h-[400px]">
+<div class="p-6 border-b border-outline-variant/50 bg-surface-bright flex justify-between items-center shrink-0">
+<h3 class="font-headline-h3 text-headline-h3 text-primary">Current Courses</h3>
+<span class="font-caption-xs text-on-surface-variant px-3 py-1 bg-surface-container rounded-full border border-outline-variant/30">Fall 2024</span>
+</div>
+<div class="flex-1 overflow-y-auto p-0">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container-lowest z-10 border-b border-outline-variant/50 shadow-sm">
+<tr>
+<th class="py-3 px-6 font-label-sm text-label-sm text-on-surface-variant font-medium uppercase tracking-wider">Course</th>
+<th class="py-3 px-6 font-label-sm text-label-sm text-on-surface-variant font-medium uppercase tracking-wider text-center">Attendance</th>
+<th class="py-3 px-6 font-label-sm text-label-sm text-on-surface-variant font-medium uppercase tracking-wider text-center">Midterm</th>
+<th class="py-3 px-6 font-label-sm text-label-sm text-on-surface-variant font-medium uppercase tracking-wider text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary-fixed/30 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="data_object">data_object</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-primary font-semibold group-hover:text-secondary transition-colors">CS 210: Data Structures</p>
+<p class="font-caption-xs text-caption-xs text-on-surface-variant mt-0.5">Prof. Smith • MWF 10:00 AM</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-center">
+<div class="inline-flex items-center gap-1">
+<span class="font-body-md text-on-surface">92%</span>
+</div>
+</td>
+<td class="py-4 px-6 text-center">
+<span class="font-body-md text-on-surface font-medium">B+</span>
+</td>
+<td class="py-4 px-6 text-right">
+<span class="inline-flex items-center px-2 py-1 rounded text-caption-xs font-medium bg-green-100 text-green-800 border border-green-200">
+                                                    On Track
+                                                </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary-fixed/30 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="functions">functions</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-primary font-semibold group-hover:text-secondary transition-colors">MATH 220: Linear Algebra</p>
+<p class="font-caption-xs text-caption-xs text-on-surface-variant mt-0.5">Prof. Davis • TTh 2:00 PM</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-center">
+<div class="inline-flex items-center gap-1 text-error">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span class="font-body-md font-medium">78%</span>
+</div>
+</td>
+<td class="py-4 px-6 text-center">
+<span class="font-body-md text-on-surface font-medium">C-</span>
+</td>
+<td class="py-4 px-6 text-right">
+<span class="inline-flex items-center px-2 py-1 rounded text-caption-xs font-medium bg-[#FFF4E5] text-[#663C00] border border-[#FFD085]">
+                                                    At Risk
+                                                </span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary-fixed/30 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="science">science</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-primary font-semibold group-hover:text-secondary transition-colors">PHYS 101: Intro to Physics</p>
+<p class="font-caption-xs text-caption-xs text-on-surface-variant mt-0.5">Prof. Lee • MWF 1:00 PM</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-center">
+<div class="inline-flex items-center gap-1">
+<span class="font-body-md text-on-surface">98%</span>
+</div>
+</td>
+<td class="py-4 px-6 text-center">
+<span class="font-body-md text-on-surface font-medium">A</span>
+</td>
+<td class="py-4 px-6 text-right">
+<span class="inline-flex items-center px-2 py-1 rounded text-caption-xs font-medium bg-green-100 text-green-800 border border-green-200">
+                                                    On Track
+                                                </span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary-fixed/30 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="history_edu">history_edu</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-primary font-semibold group-hover:text-secondary transition-colors">HIST 150: World History</p>
+<p class="font-caption-xs text-caption-xs text-on-surface-variant mt-0.5">Prof. Brown • TTh 10:30 AM</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-center">
+<div class="inline-flex items-center gap-1">
+<span class="font-body-md text-on-surface">85%</span>
+</div>
+</td>
+<td class="py-4 px-6 text-center">
+<span class="font-body-md text-on-surface font-medium">B</span>
+</td>
+<td class="py-4 px-6 text-right">
+<span class="inline-flex items-center px-2 py-1 rounded text-caption-xs font-medium bg-green-100 text-green-800 border border-green-200">
+                                                    On Track
+                                                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Column (Sidebar-like layout for Support) -->
+<div class="space-y-6">
+<!-- Support Resources -->
+<div class="bg-surface-container-lowest rounded-xl p-padding-card shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-outline-variant/30">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[20px]" data-icon="support_agent">support_agent</span>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-primary">Support Resources</h3>
+</div>
+<div class="space-y-4">
+<!-- Academic Success Center -->
+<a class="block p-4 rounded-lg border border-outline-variant/50 hover:bg-surface-container transition-colors group" href="#">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-0.5 group-hover:scale-110 transition-transform" data-icon="auto_stories">auto_stories</span>
+<div>
+<h4 class="font-label-sm text-label-sm text-primary font-semibold mb-1">Academic Success Centre</h4>
+<p class="font-caption-xs text-caption-xs text-on-surface-variant mb-3">Free tutoring, writing help, and study skills workshops.</p>
+<span class="text-secondary font-label-sm text-label-sm flex items-center gap-1">
+                                                Book Appointment <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</span>
+</div>
+</div>
+</a>
+<!-- Advisor Contact -->
+<div class="p-4 rounded-lg bg-surface-bright border border-outline-variant/30">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-4">Your Academic Advisor</h4>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant shrink-0">
+<img alt="Advisor Avatar" class="w-full h-full object-cover" data-alt="A small, professional headshot of an older, welcoming female academic advisor. She is wearing professional attire. The background is a soft, blurred office setting. The lighting is bright and clear, matching the light mode aesthetic of the surrounding UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkHIjdFkpKcSESxMZFlYKaMNIJFrDZEBZDSG7TBxRcGrUmVTfbSAAfcQHfAbBpDHuCzclVld6l0QZRplYzX_DGNFUMJYp89ddFWz6d35s4F3jUr8Dq6c5pnEDK7aiHd7pHno4bkZ5rt27cOG1KaYfrPJemGUVkHBYw3wyfA5-rFpt5yn15IF9_tL8HEb9sCoenTa2lwTIwO-je6TB1_ouTsUaQ_9UW91Z5ymA08y9dTBCQxrFeKPJsnnBZjQO0Xu3FO5mCq9xf0lo"/>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-primary font-semibold">Dr. Sarah Jenkins</p>
+<p class="font-caption-xs text-caption-xs text-on-surface-variant">Computer Science Dept.</p>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<a class="w-full py-2 px-4 rounded bg-surface-container border border-outline-variant hover:bg-surface-container-high transition-colors text-center font-label-sm text-label-sm text-primary flex items-center justify-center gap-2" href="mailto:s.jenkins@edutrack.edu">
+<span class="material-symbols-outlined text-[18px]">mail</span> Email Advisor
+                                        </a>
+<a class="w-full py-2 px-4 rounded bg-secondary text-white hover:bg-secondary/90 transition-colors text-center font-label-sm text-label-sm shadow-sm flex items-center justify-center gap-2" href="#">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span> Schedule Meeting
+                                        </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

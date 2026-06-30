@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduTrack - Upload Data</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config from Design System -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#578dff",
+                    "on-tertiary-fixed": "#001945",
+                    "on-primary-fixed-variant": "#3b475c",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#dee0ff",
+                    "surface-dim": "#dcd9db",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#8596ff",
+                    "secondary": "#4355b9",
+                    "surface-variant": "#e4e2e4",
+                    "surface-tint": "#535f75",
+                    "inverse-on-surface": "#f2f0f2",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#f0edef",
+                    "tertiary-fixed-dim": "#b0c6ff",
+                    "tertiary-container": "#002662",
+                    "inverse-surface": "#303032",
+                    "on-secondary-container": "#11278e",
+                    "outline-variant": "#c5c6cd",
+                    "background": "#fbf8fa",
+                    "surface-container-high": "#eae7e9",
+                    "surface-container-highest": "#e4e2e4",
+                    "tertiary-fixed": "#d9e2ff",
+                    "on-surface-variant": "#44474d",
+                    "surface-container-low": "#f5f3f5",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#00419d",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#1e2a3e",
+                    "on-primary": "#ffffff",
+                    "surface": "#fbf8fa",
+                    "error-container": "#ffdad6",
+                    "on-background": "#1b1b1d",
+                    "secondary-fixed-dim": "#bac3ff",
+                    "surface-bright": "#fbf8fa",
+                    "primary-fixed": "#d7e3fe",
+                    "on-primary-container": "#8591aa",
+                    "outline": "#75777d",
+                    "on-error": "#ffffff",
+                    "tertiary": "#001339",
+                    "inverse-primary": "#bbc7e1",
+                    "primary-fixed-dim": "#bbc7e1",
+                    "primary": "#091529",
+                    "on-secondary-fixed": "#00105c",
+                    "on-surface": "#1b1b1d",
+                    "on-primary-fixed": "#0f1c2f",
+                    "on-secondary-fixed-variant": "#293ca0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "base": "4px",
+                    "padding-card": "24px",
+                    "sidebar-collapsed": "72px",
+                    "sidebar-expanded": "260px",
+                    "topbar-height": "64px"
+            },
+            "fontFamily": {
+                    "headline-h1": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-h2": ["Inter"],
+                    "headline-h3": ["Inter"],
+                    "headline-h1-mobile": ["Inter"],
+                    "caption-xs": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-h1": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-h2": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-h3": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-h1-mobile": ["20px", {"lineHeight": "28px", "fontWeight": "700"}],
+                    "caption-xs": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface flex h-screen overflow-hidden antialiased">
+<!-- Shared Component: SideNavBar -->
+<nav class="bg-primary text-on-primary font-body-md text-body-md h-screen sticky top-0 left-0 w-sidebar-expanded flex flex-col h-full hidden md:flex shrink-0">
+<!-- Brand / Header -->
+<div class="p-gutter border-b border-white/10 flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined icon-fill text-white text-lg" data-icon="school">school</span>
+</div>
+<div>
+<h1 class="font-headline-h2 text-headline-h2 font-bold text-white">EduTrack</h1>
+<p class="font-caption-xs text-caption-xs text-on-primary-container opacity-80">Early Warning System</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 overflow-y-auto py-4 flex flex-col gap-1 px-3">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors" href="advisor-dashboard.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Active Tab: Students (Intent mapping for Upload Student Data) -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-white/10 border-l-4 border-secondary-container text-white font-semibold transition-all scale-[0.98]" href="student-profile.html">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Students</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors" href="analytics.html">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors" href="interventions.html">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+<span>Interventions</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors" href="reports.html">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span>Reports</span>
+</a>
+</div>
+<!-- Footer Links -->
+<div class="p-3 border-t border-white/10 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors" href="settings.html">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors" href="settings.html">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span>Support</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col h-screen overflow-hidden">
+<!-- Shared Component: TopNavBar -->
+<header class="bg-surface text-primary font-label-sm text-label-sm sticky w-full top-0 h-topbar-height border-b border-outline-variant shadow-sm flex justify-between items-center px-gutter transition-all duration-200 z-10 shrink-0">
+<div class="flex items-center gap-4">
+<!-- Mobile Menu Trigger -->
+<button class="md:hidden text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<!-- Search Bar Placeholder -->
+<div class="hidden sm:flex items-center bg-surface-container-low border border-outline-variant rounded-full px-4 py-1.5 focus-within:border-secondary focus-within:ring-1 focus-within:ring-secondary transition-all">
+<span class="material-symbols-outlined text-on-surface-variant text-sm mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-64 text-on-surface placeholder-on-surface-variant/70 outline-none" placeholder="Search students, courses..." type="text"/>
+</div>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="h-6 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-2 cursor-pointer group">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-xs group-hover:ring-2 ring-secondary transition-all">
+                        JD
+                    </div>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors ml-2" title="Logout">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+</button>
+</div>
+</header>
+<!-- Page Content Canvas -->
+<main class="flex-1 overflow-y-auto p-gutter relative">
+<div class="max-w-[1200px] mx-auto flex flex-col gap-6">
+<!-- Header -->
+<div>
+<h2 class="font-headline-h1 text-headline-h1 text-on-surface">Upload Student Performance Data (CSV)</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Import academic records to generate updated risk predictions and early warnings.</p>
+</div>
+<!-- Bento Grid Layout for Upload & Validation -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- File Dropzone Column -->
+<div class="lg:col-span-1 flex flex-col gap-6">
+<!-- Dropzone Card -->
+<div class="bg-surface-container-lowest rounded-xl p-padding-card shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-outline-variant/50 flex flex-col items-center justify-center h-[280px] group border-2 border-dashed border-outline hover:border-secondary hover:bg-secondary-fixed/10 transition-colors cursor-pointer relative overflow-hidden">
+<div class="w-16 h-16 rounded-full bg-surface-container-high group-hover:bg-secondary-fixed text-on-surface-variant group-hover:text-secondary flex items-center justify-center mb-4 transition-colors">
+<span class="material-symbols-outlined text-3xl" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-1">Drag &amp; drop CSV file here</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-center px-4 mb-4 text-sm">or click to browse your computer</p>
+<div class="flex items-center gap-2 font-caption-xs text-caption-xs text-outline">
+<span class="material-symbols-outlined text-[14px]" data-icon="info">info</span>
+<span>Max file size: 50MB</span>
+</div>
+<input accept=".csv" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" type="file"/>
+</div>
+<!-- Validation Summary Panel -->
+<div class="bg-surface-container-lowest rounded-xl p-padding-card shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-outline-variant/50">
+<div class="flex items-center justify-between mb-4">
+<h4 class="font-headline-h3 text-headline-h3 text-on-surface">Validation Summary</h4>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="expand_less">expand_less</span>
+</button>
+</div>
+<!-- Success State Mockup -->
+<div class="bg-[#E6F4EA] border border-[#A5D6A7] rounded-lg p-4 flex items-start gap-3">
+<span class="material-symbols-outlined text-[#2E7D32] icon-fill mt-0.5" data-icon="check_circle">check_circle</span>
+<div>
+<p class="font-label-sm text-label-sm text-[#1B5E20] font-bold">All rows valid</p>
+<p class="font-caption-xs text-caption-xs text-[#2E7D32] mt-1">2,450 rows parsed successfully. Ready for mapping and prediction.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Column Mapping Section -->
+<div class="lg:col-span-2">
+<div class="bg-surface-container-lowest rounded-xl p-padding-card shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-outline-variant/50 h-full flex flex-col">
+<div class="mb-4">
+<h4 class="font-headline-h3 text-headline-h3 text-on-surface">Data Mapping Preview</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-1">Map your CSV columns to the required system fields. Showing first 5 rows.</p>
+</div>
+<div class="overflow-x-auto border border-outline-variant rounded-lg">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="p-3 font-label-sm text-label-sm text-on-surface-variant uppercase w-1/4">
+<div class="flex flex-col gap-2">
+<span>CSV Column</span>
+<span class="text-xs font-normal opacity-70">student_id_raw</span>
+</div>
+</th>
+<th class="p-3 font-label-sm text-label-sm text-on-surface-variant uppercase w-1/4">
+<div class="flex flex-col gap-2">
+<span>CSV Column</span>
+<span class="text-xs font-normal opacity-70">crse_cd</span>
+</div>
+</th>
+<th class="p-3 font-label-sm text-label-sm text-on-surface-variant uppercase w-1/4">
+<div class="flex flex-col gap-2">
+<span>CSV Column</span>
+<span class="text-xs font-normal opacity-70">term_gpa</span>
+</div>
+</th>
+<th class="p-3 font-label-sm text-label-sm text-on-surface-variant uppercase w-1/4">
+<div class="flex flex-col gap-2">
+<span>CSV Column</span>
+<span class="text-xs font-normal opacity-70">absences</span>
+</div>
+</th>
+</tr>
+<tr class="bg-surface border-b-2 border-outline-variant">
+<th class="p-3">
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded text-sm p-1.5 focus:border-secondary focus:ring-1 focus:ring-secondary text-on-surface">
+<option>Student ID (Required)</option>
+<option>First Name</option>
+<option>Last Name</option>
+</select>
+</th>
+<th class="p-3">
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded text-sm p-1.5 focus:border-secondary focus:ring-1 focus:ring-secondary text-on-surface">
+<option>Course Code</option>
+<option>Department</option>
+</select>
+</th>
+<th class="p-3">
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded text-sm p-1.5 focus:border-secondary focus:ring-1 focus:ring-secondary text-on-surface">
+<option>Current GPA</option>
+<option>Cumulative GPA</option>
+</select>
+</th>
+<th class="p-3">
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded text-sm p-1.5 focus:border-secondary focus:ring-1 focus:ring-secondary text-on-surface">
+<option>Total Absences</option>
+<option>Tardies</option>
+</select>
+</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface text-sm">
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low/50">
+<td class="p-3">1009283</td>
+<td class="p-3">MATH101</td>
+<td class="p-3">3.4</td>
+<td class="p-3">2</td>
+</tr>
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low/50">
+<td class="p-3">1009284</td>
+<td class="p-3">ENG202</td>
+<td class="p-3">2.1</td>
+<td class="p-3 text-error font-medium">6</td>
+</tr>
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low/50">
+<td class="p-3">1009285</td>
+<td class="p-3">PHYS101</td>
+<td class="p-3 text-error font-medium">1.8</td>
+<td class="p-3">1</td>
+</tr>
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low/50">
+<td class="p-3">1009286</td>
+<td class="p-3">CS150</td>
+<td class="p-3">4.0</td>
+<td class="p-3">0</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50">
+<td class="p-3">1009287</td>
+<td class="p-3">HIST110</td>
+<td class="p-3">3.1</td>
+<td class="p-3">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex justify-end gap-4 mt-4 pb-12">
+<button class="px-6 py-2.5 rounded-DEFAULT font-label-sm text-label-sm border border-outline text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                        Cancel
+                    </button>
+<button class="px-6 py-2.5 rounded-DEFAULT font-label-sm text-label-sm bg-secondary text-white hover:bg-secondary-container hover:text-on-secondary-container transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="play_arrow">play_arrow</span>
+                        Run Risk Prediction
+                    </button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

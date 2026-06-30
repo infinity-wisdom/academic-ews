@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Settings - EduTrack</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#8591aa",
+                        "outline-variant": "#c5c6cd",
+                        "surface-variant": "#e4e2e4",
+                        "surface-container-high": "#eae7e9",
+                        "secondary-fixed": "#dee0ff",
+                        "on-secondary-fixed-variant": "#293ca0",
+                        "tertiary-container": "#002662",
+                        "on-secondary-container": "#11278e",
+                        "surface-container-low": "#f5f3f5",
+                        "secondary": "#4355b9",
+                        "surface-tint": "#535f75",
+                        "outline": "#75777d",
+                        "on-tertiary-fixed": "#001945",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#00105c",
+                        "inverse-surface": "#303032",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#d9e2ff",
+                        "surface-container": "#f0edef",
+                        "secondary-container": "#8596ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#44474d",
+                        "primary-fixed-dim": "#bbc7e1",
+                        "on-background": "#1b1b1d",
+                        "on-tertiary-fixed-variant": "#00419d",
+                        "surface-bright": "#fbf8fa",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#bbc7e1",
+                        "secondary-fixed-dim": "#bac3ff",
+                        "primary-fixed": "#d7e3fe",
+                        "on-tertiary-container": "#578dff",
+                        "on-primary-fixed": "#0f1c2f",
+                        "inverse-on-surface": "#f2f0f2",
+                        "error": "#ba1a1a",
+                        "on-surface": "#1b1b1d",
+                        "background": "#fbf8fa",
+                        "tertiary": "#001339",
+                        "surface-container-highest": "#e4e2e4",
+                        "on-primary-fixed-variant": "#3b475c",
+                        "surface": "#fbf8fa",
+                        "primary-container": "#1e2a3e",
+                        "primary": "#091529",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#b0c6ff",
+                        "surface-dim": "#dcd9db"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "sidebar-expanded": "260px",
+                        "sidebar-collapsed": "72px",
+                        "base": "4px",
+                        "topbar-height": "64px",
+                        "padding-card": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-h1-mobile": ["Inter"],
+                        "caption-xs": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-h1": ["Inter"],
+                        "headline-h3": ["Inter"],
+                        "headline-h2": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-h1-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }],
+                        "caption-xs": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "headline-h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-h3": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-h2": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased h-screen overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-screen w-sidebar-expanded bg-primary text-secondary-container z-50 flex flex-col shadow-sm hidden md:flex">
+<!-- Brand Header -->
+<div class="px-6 py-8 flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-primary font-headline-h2 text-headline-h2">
+<span class="material-symbols-outlined" data-icon="school" data-weight="fill" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<h1 class="font-headline-h2 text-headline-h2 text-surface-container-lowest">EduTrack</h1>
+<p class="font-caption-xs text-caption-xs text-on-primary-container">Academic Warning System</p>
+</div>
+</div>
+<!-- CTA Button -->
+<div class="px-4 mb-6">
+<button class="w-full bg-secondary text-on-secondary py-3 rounded-lg flex items-center justify-center gap-2 font-label-sm text-label-sm shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:bg-secondary/90 transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                New Intervention
+            </button>
+</div>
+<!-- Main Navigation Tabs -->
+<ul class="flex-1 overflow-y-auto font-label-sm text-label-sm">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+                    Students
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                    Analytics
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="emergency_home">emergency_home</span>
+                    Interventions
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+                    Reports
+                </a>
+</li>
+</ul>
+<!-- Footer Navigation Tabs -->
+<div class="border-t border-white/10 pt-4 pb-6 mt-auto font-label-sm text-label-sm">
+<ul>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 bg-white/10 border-l-4 border-secondary text-surface-container-lowest transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                        Settings
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                        Support
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 h-topbar-height z-40 bg-surface-container-lowest text-primary font-body-md text-body-md border-b border-outline-variant shadow-sm flex justify-between items-center px-gutter w-full md:w-[calc(100%-260px)] ml-auto">
+<div class="flex items-center gap-4">
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface-variant hover:bg-surface-container p-2 rounded-full transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 rounded-lg border border-outline-variant focus:border-secondary focus:ring-1 focus:ring-secondary/50 outline-none w-64 transition-all" placeholder="Search students, alerts..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container p-2 rounded-full transition-colors cursor-pointer relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container p-2 rounded-full transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container overflow-hidden cursor-pointer border border-outline-variant">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A small, circular avatar portrait of an academic advisor or administrative professional. The setting is bright and professional, suggesting a modern educational environment. Light mode aesthetic, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo8r0K-X3uJkwHwZIkUkx92-isw3XoiAtT73G8Vsct-JoJC9OlXWveCWj66m1-GsGezSSUmi8eYgmHDh85DDlE21AMr9gRtVW8sw8wN41uE60MzuATd_KR-9HnL_BgOrT04lJCze0nfZeEVoDdVZDqPF4fUfDgkG5_2PnizXkYy4jfeCwFgtffnI_820K9c6OXnZfGhSBT_UsGP2iz3FjPlD12tQ62-vY1rDn4hpMU572TfuLaXdxHiSf6GhW68hhlilBYEADTIrw"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 w-full md:ml-sidebar-expanded pt-topbar-height overflow-y-auto h-screen bg-background">
+<div class="p-gutter max-w-5xl mx-auto pb-24">
+<header class="mb-8">
+<h1 class="font-headline-h1 text-headline-h1 text-on-background">System Settings</h1>
+<p class="text-on-surface-variant mt-1">Manage your advisor profile, security credentials, and application preferences.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Column: Navigation / Index -->
+<div class="hidden lg:block lg:col-span-1">
+<nav class="sticky top-24 bg-surface-container-lowest rounded-[12px] p-6 shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
+<ul class="space-y-2 font-label-sm text-label-sm">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 bg-surface-container text-secondary font-bold rounded-lg transition-colors" href="#profile">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                                    Account Profile
+                                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#security">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+                                    Security
+                                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors" href="#preferences">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+                                    Application Preferences
+                                </a>
+</li>
+</ul>
+</nav>
+</div>
+<!-- Right Column: Settings Sections -->
+<div class="lg:col-span-2 space-y-6">
+<!-- Account Profile Section -->
+<section class="bg-surface-container-lowest rounded-[12px] p-[24px] shadow-[0_2px_8px_rgba(0,0,0,0.08)]" id="profile">
+<h2 class="font-headline-h3 text-headline-h3 mb-6 border-b border-surface-variant pb-4">Account Profile</h2>
+<div class="flex items-start gap-6 mb-8">
+<div class="relative">
+<div class="w-24 h-24 rounded-full bg-secondary-container overflow-hidden border-2 border-surface-variant">
+<img alt="Profile Picture" class="w-full h-full object-cover" data-alt="A close-up, high-quality portrait of a smiling academic professional. The lighting is soft and even, highlighting a friendly yet authoritative demeanor. Set against a blurred institutional background. Light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtFXGhmY8KlHx1pj3oJQ6El5JAY05FaN0D7Vlvh6I8KGkbDS7XENKjudpabD2h4TW1y3WAyUv2qfuTl8wkwLBX5aBJ3-GCRZewk7wYglg8tlvWDvxXAJwuYWwg_Mi_-MLtsj8HNf39xy3FhCCg88xsQ7M5BqVQQTEU87EfSV3YrzR0fUyoBHT5UB7ivxx-WCU69DQpauEGADaHK2E_N_fjn9SyYDsUrVUf-yihyMnOnJ0TgQwSZynLULPNaYhxh-ZHh8pQ-h3lVBo"/>
+</div>
+<button class="absolute bottom-0 right-0 bg-surface-container-lowest border border-outline-variant p-1.5 rounded-full text-on-surface-variant hover:bg-surface-container shadow-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="edit">edit</span>
+</button>
+</div>
+<div class="flex-1">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Profile Photo</p>
+<p class="text-sm text-outline mb-3">Recommended size 256x256px. JPG, PNG, or GIF.</p>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-secondary text-on-secondary rounded-lg font-label-sm text-label-sm hover:bg-secondary/90 transition-colors">Upload New</button>
+<button class="px-4 py-2 border border-outline-variant text-on-surface-variant rounded-lg font-label-sm text-label-sm hover:bg-surface-container transition-colors">Remove</button>
+</div>
+</div>
+</div>
+<form class="space-y-5">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1.5">First Name</label>
+<input class="w-full rounded-[8px] border border-outline-variant px-3 py-2 text-on-background focus:border-[#0A58CA] focus:ring-1 focus:ring-[#0A58CA]/50 outline-none transition-all" type="text" value="Dr. Sarah"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1.5">Last Name</label>
+<input class="w-full rounded-[8px] border border-outline-variant px-3 py-2 text-on-background focus:border-[#0A58CA] focus:ring-1 focus:ring-[#0A58CA]/50 outline-none transition-all" type="text" value="Jenkins"/>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1.5">Professional Email</label>
+<input class="w-full rounded-[8px] border border-outline-variant px-3 py-2 text-on-background focus:border-[#0A58CA] focus:ring-1 focus:ring-[#0A58CA]/50 outline-none transition-all" type="email" value="s.jenkins@university.edu"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1.5">Role / Title</label>
+<input class="w-full rounded-[8px] border border-surface-variant bg-surface-container-low px-3 py-2 text-outline cursor-not-allowed" disabled="" type="text" value="Senior Academic Advisor"/>
+<p class="text-xs text-outline mt-1">Contact your system administrator to change your role.</p>
+</div>
+<div class="pt-4 border-t border-surface-variant">
+<h3 class="font-label-sm text-label-sm font-semibold mb-3">Notification Preferences</h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="text-on-background">Email alerts for Critical Academic Warnings</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="text-on-background">Daily intervention digest</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-4 h-4 rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="text-on-background">SMS notifications for emergency cases</span>
+</label>
+</div>
+</div>
+<div class="pt-6 flex justify-end">
+<button class="px-5 py-2 bg-secondary text-on-secondary rounded-lg font-label-sm text-label-sm hover:bg-secondary/90 transition-colors shadow-sm" type="button">Save Profile Changes</button>
+</div>
+</form>
+</section>
+<!-- Security Section -->
+<section class="bg-surface-container-lowest rounded-[12px] p-[24px] shadow-[0_2px_8px_rgba(0,0,0,0.08)]" id="security">
+<h2 class="font-headline-h3 text-headline-h3 mb-6 border-b border-surface-variant pb-4">Security</h2>
+<div class="space-y-6">
+<div>
+<h3 class="font-label-sm text-label-sm font-semibold mb-2">Password</h3>
+<p class="text-sm text-on-surface-variant mb-4">Last changed 45 days ago. We recommend updating your password every 90 days.</p>
+<button class="px-4 py-2 border border-[#1E2A3E] text-[#1E2A3E] rounded-lg font-label-sm text-label-sm hover:bg-surface-container transition-colors">Change Password</button>
+</div>
+<div class="pt-4 border-t border-surface-variant flex items-center justify-between">
+<div>
+<h3 class="font-label-sm text-label-sm font-semibold mb-1">Two-Factor Authentication (2FA)</h3>
+<p class="text-sm text-on-surface-variant">Add an extra layer of security to your account.</p>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-secondary/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<div class="pt-4 border-t border-surface-variant flex items-center justify-between">
+<div>
+<h3 class="font-label-sm text-label-sm font-semibold text-[#D92D20] mb-1">Active Sessions</h3>
+<p class="text-sm text-on-surface-variant">Sign out of all other browsers and devices.</p>
+</div>
+<button class="px-4 py-2 bg-[#D92D20] text-white rounded-lg font-label-sm text-label-sm hover:bg-[#D92D20]/90 transition-colors shadow-sm">Sign Out Everywhere</button>
+</div>
+</div>
+</section>
+<!-- Application Preferences Section -->
+<section class="bg-surface-container-lowest rounded-[12px] p-[24px] shadow-[0_2px_8px_rgba(0,0,0,0.08)]" id="preferences">
+<h2 class="font-headline-h3 text-headline-h3 mb-6 border-b border-surface-variant pb-4">Application Preferences</h2>
+<div class="space-y-6">
+<div>
+<h3 class="font-label-sm text-label-sm font-semibold mb-3">Theme</h3>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="theme" type="radio" value="light"/>
+<div class="border-2 border-outline-variant peer-checked:border-secondary peer-checked:bg-secondary/5 rounded-lg p-4 text-center transition-all">
+<span class="material-symbols-outlined mb-2 text-on-surface-variant peer-checked:text-secondary" data-icon="light_mode">light_mode</span>
+<p class="font-label-sm text-label-sm text-on-background">Light</p>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="theme" type="radio" value="dark"/>
+<div class="border-2 border-outline-variant peer-checked:border-secondary peer-checked:bg-secondary/5 rounded-lg p-4 text-center transition-all">
+<span class="material-symbols-outlined mb-2 text-on-surface-variant peer-checked:text-secondary" data-icon="dark_mode">dark_mode</span>
+<p class="font-label-sm text-label-sm text-on-background">Dark</p>
+</div>
+</label>
+<label class="cursor-pointer hidden md:block">
+<input class="peer sr-only" name="theme" type="radio" value="system"/>
+<div class="border-2 border-outline-variant peer-checked:border-secondary peer-checked:bg-secondary/5 rounded-lg p-4 text-center transition-all">
+<span class="material-symbols-outlined mb-2 text-on-surface-variant peer-checked:text-secondary" data-icon="settings_system_daydream">settings_system_daydream</span>
+<p class="font-label-sm text-label-sm text-on-background">System</p>
+</div>
+</label>
+</div>
+</div>
+<div class="pt-4 border-t border-surface-variant">
+<label class="block font-label-sm text-label-sm font-semibold mb-2">Language &amp; Region</label>
+<select class="w-full md:w-1/2 rounded-[8px] border border-outline-variant px-3 py-2 text-on-background focus:border-[#0A58CA] focus:ring-1 focus:ring-[#0A58CA]/50 outline-none transition-all bg-surface-container-lowest">
+<option value="en-US">English (United States)</option>
+<option value="en-GB">English (United Kingdom)</option>
+<option value="es">Español</option>
+<option value="fr">Français</option>
+</select>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+</body></html>

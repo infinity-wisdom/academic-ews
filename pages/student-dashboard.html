@@ -209,7 +209,7 @@
 <span class="material-symbols-outlined">settings</span>
 <span>Settings</span>
 </a>
-<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors" href="../index.html">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors" href="#" id="logout-link">
 <span class="material-symbols-outlined">logout</span>
 <span>Log Out</span>
 </a>
@@ -225,15 +225,15 @@
 <span class="font-headline-h3 text-headline-h3 text-primary dark:text-primary-fixed">EduTrack</span>
 </div>
 <div class="hidden md:flex items-center flex-1 max-w-md ml-4">
-<h2 class="font-headline-h3 text-headline-h3 text-on-surface">Welcome back, Alex</h2>
+<h2 class="font-headline-h3 text-headline-h3 text-on-surface" id="welcome-heading">Welcome back</h2>
 </div>
 <div class="flex items-center space-x-4">
 <button class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors p-2 rounded-full relative">
 <span class="material-symbols-outlined">notifications</span>
 <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
 </button>
-<div class="h-8 w-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm font-bold ml-2 cursor-pointer border border-outline-variant/30">
-                    AR
+<div class="h-8 w-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm font-bold ml-2 cursor-pointer border border-outline-variant/30" id="avatar-initials">
+                    --
                 </div>
 </div>
 </header>
@@ -249,7 +249,7 @@
 <div class="flex items-start justify-between">
 <div>
 <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Overall Status</p>
-<h3 class="font-headline-h1 text-headline-h1 text-[#B0721E] mt-2">At Risk</h3>
+<h3 class="font-headline-h1 text-headline-h1 text-[#B0721E] mt-2" id="status-value">At Risk</h3>
 </div>
 <div class="p-2 rounded-lg bg-[#FFF4E5] text-[#B0721E]">
 <span class="material-symbols-outlined">warning</span>
@@ -257,14 +257,14 @@
 </div>
 <div class="mt-4 flex items-center text-on-surface-variant font-label-sm text-label-sm">
 <span class="material-symbols-outlined text-sm mr-1">schedule</span>
-<span>Flagged in 1 course</span>
+<span id="status-subtext">Flagged in 1 course</span>
 </div>
 </div>
 <div class="bg-surface-container-lowest rounded-xl p-padding-card custom-shadow-card border border-outline-variant/20 flex flex-col justify-between">
 <div class="flex items-start justify-between">
 <div>
 <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Attendance Rate</p>
-<h3 class="font-headline-h1 text-headline-h1 text-on-surface mt-2">88%</h3>
+<h3 class="font-headline-h1 text-headline-h1 text-on-surface mt-2" id="attendance-value">--%</h3>
 </div>
 <div class="p-2 rounded-lg bg-surface-container-high text-on-surface-variant">
 <span class="material-symbols-outlined">event_available</span>
@@ -279,7 +279,7 @@
 <div class="flex items-start justify-between">
 <div>
 <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Current GPA</p>
-<h3 class="font-headline-h1 text-headline-h1 text-[#2E7D32] mt-2">3.1</h3>
+<h3 class="font-headline-h1 text-headline-h1 text-[#2E7D32] mt-2" id="gpa-value">--</h3>
 </div>
 <div class="p-2 rounded-lg bg-[#E8F5E9] text-[#2E7D32]">
 <span class="material-symbols-outlined">grade</span>
@@ -307,55 +307,8 @@
 <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase font-medium text-center">Status</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-surface-container-high">
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="p-4 font-body-md text-body-md font-medium text-on-surface">CS101 - Intro to Programming</td>
-<td class="p-4 font-body-md text-body-md text-on-surface-variant">Dr. Patel</td>
-<td class="p-4">
-<div class="flex items-center space-x-2">
-<div class="w-full bg-surface-variant rounded-full h-2">
-<div class="bg-[#F59E0B] h-2 rounded-full" style="width: 75%"></div>
-</div>
-<span class="font-caption-xs text-caption-xs text-[#B0721E]">75%</span>
-</div>
-</td>
-<td class="p-4 font-body-md text-body-md text-on-surface text-right">68%</td>
-<td class="p-4 text-center">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#FFF4E5] text-[#B0721E]">Warning</span>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="p-4 font-body-md text-body-md font-medium text-on-surface">MATH202 - Calculus II</td>
-<td class="p-4 font-body-md text-body-md text-on-surface-variant">Dr. Lindqvist</td>
-<td class="p-4">
-<div class="flex items-center space-x-2">
-<div class="w-full bg-surface-variant rounded-full h-2">
-<div class="bg-[#2E7D32] h-2 rounded-full" style="width: 95%"></div>
-</div>
-<span class="font-caption-xs text-caption-xs text-[#2E7D32]">95%</span>
-</div>
-</td>
-<td class="p-4 font-body-md text-body-md text-on-surface text-right">89%</td>
-<td class="p-4 text-center">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#E8F5E9] text-[#2E7D32]">On Track</span>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="p-4 font-body-md text-body-md font-medium text-on-surface">ENG105 - Academic Writing</td>
-<td class="p-4 font-body-md text-body-md text-on-surface-variant">Prof. Whitman</td>
-<td class="p-4">
-<div class="flex items-center space-x-2">
-<div class="w-full bg-surface-variant rounded-full h-2">
-<div class="bg-[#2E7D32] h-2 rounded-full" style="width: 92%"></div>
-</div>
-<span class="font-caption-xs text-caption-xs text-[#2E7D32]">92%</span>
-</div>
-</td>
-<td class="p-4 font-body-md text-body-md text-on-surface text-right">84%</td>
-<td class="p-4 text-center">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#E8F5E9] text-[#2E7D32]">On Track</span>
-</td>
-</tr>
+<tbody class="divide-y divide-surface-container-high" id="courses-tbody">
+<tr><td class="p-4 text-on-surface-variant" colspan="5">Loading your courses…</td></tr>
 </tbody>
 </table>
 </div>
@@ -378,4 +331,99 @@
 </div>
 </main>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase-client.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script>
+    (async () => {
+        // Protect this page: must be logged in AND have role = student.
+        const profile = await requireRole(['student'], 'login.html');
+        if (!profile) return;
+
+        document.getElementById('welcome-heading').textContent = `Welcome back, ${profile.full_name.split(' ')[0]}`;
+        document.getElementById('avatar-initials').textContent = profile.full_name
+            .split(' ').map(p => p[0]).slice(0, 2).join('').toUpperCase();
+
+        document.getElementById('logout-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            signOutAndRedirect('login.html');
+        });
+
+        // Latest risk score
+        const { data: risk } = await window.supabaseClient
+            .from('risk_scores')
+            .select('*')
+            .eq('student_id', profile.id)
+            .order('calculated_at', { ascending: false })
+            .limit(1)
+            .maybeSingle();
+
+        if (risk) {
+            const labelMap = { low: 'On Track', medium: 'At Risk', high: 'High Risk' };
+            const colorMap = {
+                low: { text: 'text-[#2E7D32]', bg: 'bg-[#E8F5E9]' },
+                medium: { text: 'text-[#B0721E]', bg: 'bg-[#FFF4E5]' },
+                high: { text: 'text-[#B3261E]', bg: 'bg-[#FCE8E6]' },
+            };
+            const statusEl = document.getElementById('status-value');
+            statusEl.textContent = labelMap[risk.level] || risk.level;
+            statusEl.className = `font-headline-h1 text-headline-h1 mt-2 ${colorMap[risk.level]?.text || ''}`;
+            document.getElementById('status-subtext').textContent = `Risk score: ${risk.score}`;
+        } else {
+            document.getElementById('status-value').textContent = 'No data yet';
+            document.getElementById('status-subtext').textContent = 'Your advisor hasn\'t added a risk assessment yet';
+        }
+
+        // Enrollments → courses table + attendance/GPA summary
+        const { data: enrollments, error: enrollError } = await window.supabaseClient
+            .from('enrollments')
+            .select('*, courses(code, name, instructor)')
+            .eq('student_id', profile.id);
+
+        const tbody = document.getElementById('courses-tbody');
+
+        if (enrollError) {
+            tbody.innerHTML = `<tr><td class="p-4 text-red-600" colspan="5">Could not load courses: ${enrollError.message}</td></tr>`;
+        } else if (!enrollments || enrollments.length === 0) {
+            tbody.innerHTML = `<tr><td class="p-4 text-on-surface-variant" colspan="5">You're not enrolled in any courses yet.</td></tr>`;
+        } else {
+            const statusLabel = { on_track: 'On Track', warning: 'Warning', critical: 'Critical' };
+            const statusColor = {
+                on_track: { bar: 'bg-[#2E7D32]', text: 'text-[#2E7D32]', bg: 'bg-[#E8F5E9]' },
+                warning: { bar: 'bg-[#F59E0B]', text: 'text-[#B0721E]', bg: 'bg-[#FFF4E5]' },
+                critical: { bar: 'bg-[#B3261E]', text: 'text-[#B3261E]', bg: 'bg-[#FCE8E6]' },
+            };
+
+            tbody.innerHTML = enrollments.map(en => {
+                const c = statusColor[en.status] || statusColor.on_track;
+                const attendance = en.attendance_rate ?? 0;
+                return `
+                    <tr class="hover:bg-surface-container-low/50 transition-colors">
+                        <td class="p-4 font-body-md text-body-md font-medium text-on-surface">${en.courses?.code || ''} - ${en.courses?.name || ''}</td>
+                        <td class="p-4 font-body-md text-body-md text-on-surface-variant">${en.courses?.instructor || '—'}</td>
+                        <td class="p-4">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-full bg-surface-variant rounded-full h-2">
+                                    <div class="${c.bar} h-2 rounded-full" style="width: ${attendance}%"></div>
+                                </div>
+                                <span class="font-caption-xs text-caption-xs ${c.text}">${attendance}%</span>
+                            </div>
+                        </td>
+                        <td class="p-4 font-body-md text-body-md text-on-surface text-right">${en.current_grade ?? '—'}%</td>
+                        <td class="p-4 text-center">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm ${c.bg} ${c.text}">${statusLabel[en.status] || en.status}</span>
+                        </td>
+                    </tr>`;
+            }).join('');
+
+            // Summary cards
+            const avgAttendance = Math.round(enrollments.reduce((s, e) => s + (e.attendance_rate || 0), 0) / enrollments.length);
+            document.getElementById('attendance-value').textContent = `${avgAttendance}%`;
+
+            const avgGrade = enrollments.reduce((s, e) => s + (e.current_grade || 0), 0) / enrollments.length;
+            const gpa = (avgGrade / 25).toFixed(1); // rough 100pt → 4.0 scale approximation
+            document.getElementById('gpa-value').textContent = gpa;
+        }
+    })();
+</script>
 </body></html>

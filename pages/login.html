@@ -86,12 +86,12 @@
 <input id="selected-role" name="role" type="hidden" value="student"/>
 </div>
 <div>
-<label class="block font-label-sm text-label-sm text-on-surface mb-1" for="username">Username or Email</label>
+<label class="block font-label-sm text-label-sm text-on-surface mb-1" for="email">Email</label>
 <div class="relative">
 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
 <span class="material-symbols-outlined text-outline">person</span>
 </div>
-<input class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder-on-surface-variant input-focus transition-all duration-200 outline-none" id="username" name="username" placeholder="Enter your credential" required="" type="text"/>
+<input autocomplete="email" class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder-on-surface-variant input-focus transition-all duration-200 outline-none" id="email" name="email" placeholder="you@university.edu" required="" type="email"/>
 </div>
 </div>
 <div>
@@ -112,7 +112,7 @@
 <label class="ml-2 block font-label-sm text-label-sm text-on-surface-variant" for="remember-me">Remember me</label>
 </div>
 <div class="text-sm">
-<a class="font-label-sm text-label-sm text-secondary hover:text-secondary/80" href="#">Forgot password?</a>
+<a class="font-label-sm text-label-sm text-secondary hover:text-secondary/80" href="forgot-password.html">Forgot password?</a>
 </div>
 </div>
 <div class="pt-2">
@@ -120,13 +120,23 @@
                         Sign In as Student
                     </button>
 </div>
+<p class="hidden text-center font-caption-xs text-caption-xs text-red-600" id="error-message"></p>
 </form>
+<div class="mt-6 text-center">
+<p class="font-caption-xs text-caption-xs text-outline">
+                    New student? <a class="text-secondary hover:underline" href="signup.html">Create an account</a>
+                </p>
+</div>
 </div>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase-client.js"></script>
+<script src="../assets/js/auth.js"></script>
 <script>
     const roleButtons = document.querySelectorAll('.role-option');
     const roleInput = document.getElementById('selected-role');
     const signInBtn = document.getElementById('sign-in-btn');
+    const errorMessage = document.getElementById('error-message');
     const DESTINATIONS = { student: 'student-dashboard.html', advisor: 'advisor-dashboard.html' };
     const LABELS = { student: 'Sign In as Student', advisor: 'Sign In as Advisor' };
 
@@ -144,8 +154,58 @@
         });
     });
 
-    signInBtn.addEventListener('click', () => {
-        window.location.href = DESTINATIONS[roleInput.value];
+    function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.classList.remove('hidden');
+    }
+
+    signInBtn.addEventListener('click', async () => {
+        errorMessage.classList.add('hidden');
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const expectedRole = roleInput.value;
+
+        if (!email || !password) {
+            showError('Please enter your email and password.');
+            return;
+        }
+
+        signInBtn.disabled = true;
+        signInBtn.textContent = 'Signing in…';
+
+        const { data, error } = await window.supabaseClient.auth.signInWithPassword({ email, password });
+
+        if (error) {
+            showError(error.message);
+            signInBtn.disabled = false;
+            signInBtn.textContent = LABELS[expectedRole];
+            return;
+        }
+
+        // Confirm this account's actual role matches what they selected.
+        const { data: profile, error: profileError } = await window.supabaseClient
+            .from('profiles')
+            .select('role')
+            .eq('id', data.user.id)
+            .single();
+
+        if (profileError || !profile) {
+            showError('Could not load your profile. Please contact your administrator.');
+            await window.supabaseClient.auth.signOut();
+            signInBtn.disabled = false;
+            signInBtn.textContent = LABELS[expectedRole];
+            return;
+        }
+
+        if (profile.role !== expectedRole) {
+            showError(`This account is registered as a${profile.role === 'admin' ? 'n' : ''} ${profile.role}. Please select the correct option above${profile.role === 'admin' ? ', or use the admin login page' : ''}.`);
+            await window.supabaseClient.auth.signOut();
+            signInBtn.disabled = false;
+            signInBtn.textContent = LABELS[expectedRole];
+            return;
+        }
+
+        window.location.href = DESTINATIONS[expectedRole];
     });
 </script>
 </body></html>

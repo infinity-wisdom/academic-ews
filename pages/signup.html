@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Account · Academic EWS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#fbf8fa",
+                        "outline-variant": "#c5c6cd",
+                        "outline": "#75777d",
+                        "on-surface": "#1b1b1d",
+                        "on-surface-variant": "#44474d",
+                        "primary": "#091529",
+                        "on-primary": "#ffffff",
+                        "secondary": "#4355b9"
+                    },
+                    "borderRadius": { "lg": "0.5rem", "card": "12px" },
+                    "spacing": { "padding-card": "24px", "gutter": "24px" },
+                    "fontFamily": {
+                        "headline-h1": ["Inter"], "body-md": ["Inter"],
+                        "label-sm": ["Inter"], "caption-xs": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "caption-xs": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    },
+                    "boxShadow": { "card": "0 2px 8px rgba(0,0,0,0.08)" }
+                },
+            },
+        }
+    </script>
+<style>
+        .input-focus:focus {
+            border-color: #0A58CA;
+            box-shadow: 0 0 0 4px rgba(10, 88, 202, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface min-h-screen flex items-center justify-center font-body-md text-on-surface">
+<main class="w-full max-w-md px-gutter">
+<div class="bg-surface-container-lowest rounded-card shadow-card p-padding-card">
+<div class="text-center mb-8">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary mb-4">
+<span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<h1 class="font-headline-h1 text-headline-h1 text-on-surface mb-2">Create Your Account</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Student sign-up for the Academic EWS Portal</p>
+</div>
+<form class="space-y-5" id="signup-form">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface mb-1" for="full_name">Full Name</label>
+<input class="block w-full px-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder-on-surface-variant input-focus transition-all duration-200 outline-none" id="full_name" placeholder="Jordan Lee" required type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface mb-1" for="student_id">Student ID</label>
+<input class="block w-full px-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder-on-surface-variant input-focus transition-all duration-200 outline-none" id="student_id" placeholder="S00123456" required type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface mb-1" for="email">Email</label>
+<input autocomplete="email" class="block w-full px-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder-on-surface-variant input-focus transition-all duration-200 outline-none" id="email" placeholder="you@university.edu" required type="email"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface mb-1" for="password">Password</label>
+<input autocomplete="new-password" class="block w-full px-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder-on-surface-variant input-focus transition-all duration-200 outline-none" id="password" minlength="6" placeholder="At least 6 characters" required type="password"/>
+</div>
+<button class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm font-label-sm text-label-sm text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors duration-200" id="signup-btn" type="submit">
+                    Create Account
+                </button>
+<p class="hidden text-center font-caption-xs text-caption-xs text-red-600" id="error-message"></p>
+<p class="hidden text-center font-caption-xs text-caption-xs text-green-700" id="success-message"></p>
+</form>
+<div class="mt-6 text-center">
+<p class="font-caption-xs text-caption-xs text-outline">
+                Already have an account? <a class="text-secondary hover:underline" href="login.html">Sign in</a>
+            </p>
+</div>
+</div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase-client.js"></script>
+<script>
+    const form = document.getElementById('signup-form');
+    const signupBtn = document.getElementById('signup-btn');
+    const errorMessage = document.getElementById('error-message');
+    const successMessage = document.getElementById('success-message');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorMessage.classList.add('hidden');
+        successMessage.classList.add('hidden');
+
+        const full_name = document.getElementById('full_name').value.trim();
+        const student_id = document.getElementById('student_id').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+
+        signupBtn.disabled = true;
+        signupBtn.textContent = 'Creating account…';
+
+        // 1. Create the auth user. Our database trigger auto-creates
+        //    a matching `profiles` row with role = 'student'.
+        const { data, error } = await window.supabaseClient.auth.signUp({
+            email,
+            password,
+            options: { data: { full_name } }
+        });
+
+        if (error) {
+            errorMessage.textContent = error.message;
+            errorMessage.classList.remove('hidden');
+            signupBtn.disabled = false;
+            signupBtn.textContent = 'Create Account';
+            return;
+        }
+
+        // 2. Save the student_id onto their new profile row.
+        if (data.user) {
+            await window.supabaseClient
+                .from('profiles')
+                .update({ student_id })
+                .eq('id', data.user.id);
+        }
+
+        if (data.session) {
+            // Email confirmation is off — they're signed in immediately.
+            window.location.href = 'student-dashboard.html';
+        } else {
+            // Email confirmation is on — they need to check their inbox first.
+            successMessage.textContent = 'Account created! Check your email to confirm, then sign in.';
+            successMessage.classList.remove('hidden');
+            form.reset();
+            signupBtn.disabled = false;
+            signupBtn.textContent = 'Create Account';
+        }
+    });
+</script>
+</body></html>

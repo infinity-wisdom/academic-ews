@@ -310,4 +310,50 @@
 </div>
 </div>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase-client.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script>
+  (async () => {
+    const profile = await requireRole(['student', 'advisor', 'admin'], 'login.html');
+    if (!profile) return;
+
+    // Populate header name + role badge
+    document.querySelectorAll('[data-field="full_name"]').forEach(el => el.textContent = profile.full_name || '—');
+    document.querySelectorAll('[data-field="email"]').forEach(el => el.textContent = profile.email || '—');
+    document.querySelectorAll('[data-field="role"]').forEach(el => {
+      el.textContent = profile.role.charAt(0).toUpperCase() + profile.role.slice(1);
+    });
+    document.querySelectorAll('[data-field="student_id"]').forEach(el => {
+      el.textContent = profile.student_id || '—';
+    });
+
+    // Avatar
+    if (profile.avatar_url) {
+      document.querySelectorAll('[data-avatar]').forEach(img => img.src = profile.avatar_url);
+    }
+
+    // Avatar upload
+    const avatarInput = document.getElementById('avatar-input');
+    if (avatarInput) {
+      avatarInput.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const ext = file.name.split('.').pop();
+        const path = `${profile.id}/avatar.${ext}`;
+        const { error: uploadErr } = await window.supabaseClient.storage
+          .from('avatars').upload(path, file, { upsert: true });
+        if (uploadErr) { alert('Upload failed: ' + uploadErr.message); return; }
+        const { data: { publicUrl } } = window.supabaseClient.storage.from('avatars').getPublicUrl(path);
+        await window.supabaseClient.from('profiles').update({ avatar_url: publicUrl }).eq('id', profile.id);
+        document.querySelectorAll('[data-avatar]').forEach(img => img.src = publicUrl);
+      });
+    }
+
+    // Logout
+    document.querySelectorAll('[data-logout]').forEach(el => {
+      el.addEventListener('click', e => { e.preventDefault(); signOutAndRedirect('login.html'); });
+    });
+  })();
+</script>
 </body></html>

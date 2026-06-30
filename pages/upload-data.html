@@ -189,7 +189,7 @@
                         JD
                     </div>
 </div>
-<button class="text-on-surface-variant hover:text-primary transition-colors ml-2" title="Logout">
+<button class="text-on-surface-variant hover:text-primary transition-colors ml-2" id="logout-btn" title="Logout">
 <span class="material-symbols-outlined" data-icon="logout">logout</span>
 </button>
 </div>
@@ -217,8 +217,9 @@
 <span class="material-symbols-outlined text-[14px]" data-icon="info">info</span>
 <span>Max file size: 50MB</span>
 </div>
-<input accept=".csv" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" type="file"/>
+<input accept=".csv" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" id="csv-file-input" type="file"/>
 </div>
+<p class="hidden font-caption-xs text-caption-xs" id="upload-status"></p>
 <!-- Validation Summary Panel -->
 <div class="bg-surface-container-lowest rounded-xl p-padding-card shadow-[0_2px_8px_rgba(0,0,0,0.08)] border border-outline-variant/50">
 <div class="flex items-center justify-between mb-4">
@@ -343,7 +344,7 @@
 <button class="px-6 py-2.5 rounded-DEFAULT font-label-sm text-label-sm border border-outline text-on-surface-variant hover:bg-surface-container-high transition-colors">
                         Cancel
                     </button>
-<button class="px-6 py-2.5 rounded-DEFAULT font-label-sm text-label-sm bg-secondary text-white hover:bg-secondary-container hover:text-on-secondary-container transition-colors shadow-sm flex items-center gap-2">
+<button class="px-6 py-2.5 rounded-DEFAULT font-label-sm text-label-sm bg-secondary text-white hover:bg-secondary-container hover:text-on-secondary-container transition-colors shadow-sm flex items-center gap-2" id="run-prediction-btn">
 <span class="material-symbols-outlined text-sm" data-icon="play_arrow">play_arrow</span>
                         Run Risk Prediction
                     </button>
@@ -351,4 +352,76 @@
 </div>
 </main>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase-client.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script>
+    (async () => {
+        const profile = await requireRole(['advisor', 'admin'], 'login.html');
+        if (!profile) return;
+
+        document.getElementById('logout-btn').addEventListener('click', () => signOutAndRedirect('login.html'));
+
+        const fileInput = document.getElementById('csv-file-input');
+        const statusEl = document.getElementById('upload-status');
+        const runBtn = document.getElementById('run-prediction-btn');
+        let selectedFile = null;
+
+        function setStatus(message, isError) {
+            statusEl.textContent = message;
+            statusEl.className = `font-caption-xs text-caption-xs ${isError ? 'text-red-600' : 'text-secondary'}`;
+            statusEl.classList.remove('hidden');
+        }
+
+        fileInput.addEventListener('change', () => {
+            selectedFile = fileInput.files[0] || null;
+            if (selectedFile) {
+                setStatus(`Selected: ${selectedFile.name} (${(selectedFile.size / 1024).toFixed(0)} KB)`, false);
+            }
+        });
+
+        // "Run Risk Prediction" — for now this uploads the CSV to Storage
+        // and logs it in `uploaded_files`. Turning the raw CSV rows into
+        // actual enrollments/risk_scores rows requires a small server-side
+        // function (Supabase Edge Function) to parse and validate the file —
+        // see supabase/README-SUPABASE.md for how to add that next.
+        runBtn.addEventListener('click', async () => {
+            if (!selectedFile) {
+                setStatus('Please choose a CSV file first.', true);
+                return;
+            }
+
+            runBtn.disabled = true;
+            setStatus('Uploading…', false);
+
+            const filePath = `${profile.id}/${Date.now()}_${selectedFile.name}`;
+            const { error: uploadError } = await window.supabaseClient
+                .storage
+                .from('data-uploads')
+                .upload(filePath, selectedFile);
+
+            if (uploadError) {
+                setStatus(`Upload failed: ${uploadError.message}`, true);
+                runBtn.disabled = false;
+                return;
+            }
+
+            const { error: logError } = await window.supabaseClient
+                .from('uploaded_files')
+                .insert({
+                    uploaded_by: profile.id,
+                    file_path: filePath,
+                    original_name: selectedFile.name,
+                    status: 'completed'
+                });
+
+            if (logError) {
+                setStatus(`File uploaded, but logging failed: ${logError.message}`, true);
+            } else {
+                setStatus('File uploaded successfully and logged.', false);
+            }
+            runBtn.disabled = false;
+        });
+    })();
+</script>
 </body></html>

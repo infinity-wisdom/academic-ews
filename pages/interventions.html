@@ -355,4 +355,75 @@
 </div>
 </main>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase-client.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script>
+  (async () => {
+    const profile = await requireRole(['advisor', 'admin'], 'login.html');
+    if (!profile) return;
+
+    // Logout
+    document.querySelectorAll('[data-logout], [href="../index.html"], [href="login.html"]').forEach(el => {
+      if (el.textContent.trim().toLowerCase().includes('log out') ||
+          el.textContent.trim().toLowerCase().includes('logout') ||
+          el.textContent.trim().toLowerCase().includes('sign out')) {
+        el.addEventListener('click', e => { e.preventDefault(); signOutAndRedirect('login.html'); });
+      }
+    });
+
+    // Load interventions from DB
+    const tbody = document.querySelector('tbody');
+    if (!tbody) return;
+
+    const isAdmin = profile.role === 'admin';
+    let query = window.supabaseClient
+      .from('interventions')
+      .select(`
+        id, type, notes, status, created_at,
+        students:student_id ( full_name, student_id ),
+        advisors:advisor_id ( full_name )
+      `)
+      .order('created_at', { ascending: false });
+
+    if (!isAdmin) query = query.eq('advisor_id', profile.id);
+
+    const { data: interventions, error } = await query;
+
+    if (error || !interventions || interventions.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-on-surface-variant">No interventions found.</td></tr>`;
+      return;
+    }
+
+    const statusBadge = {
+      open:        'bg-blue-100 text-blue-800',
+      in_progress: 'bg-yellow-100 text-yellow-800',
+      resolved:    'bg-green-100 text-green-800'
+    };
+    const statusLabel = { open: 'Open', in_progress: 'In Progress', resolved: 'Resolved' };
+
+    tbody.innerHTML = interventions.map(iv => `
+      <tr class="hover:bg-surface-container-low/50 transition-colors border-b border-surface-container-high">
+        <td class="p-4 font-medium">${iv.students?.full_name || '—'}</td>
+        <td class="p-4 text-on-surface-variant">${iv.students?.student_id || '—'}</td>
+        <td class="p-4">${iv.type}</td>
+        <td class="p-4 text-on-surface-variant text-sm">${iv.notes || '—'}</td>
+        <td class="p-4">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-medium ${statusBadge[iv.status] || ''}">
+            ${statusLabel[iv.status] || iv.status}
+          </span>
+        </td>
+        <td class="p-4 text-on-surface-variant text-sm">${new Date(iv.created_at).toLocaleDateString()}</td>
+      </tr>`).join('');
+
+    // Update summary counts
+    const open     = interventions.filter(i => i.status === 'open').length;
+    const inProg   = interventions.filter(i => i.status === 'in_progress').length;
+    const resolved = interventions.filter(i => i.status === 'resolved').length;
+    const summaryEls = document.querySelectorAll('[class*="text-headline"]');
+    if (summaryEls[0]) summaryEls[0].textContent = open;
+    if (summaryEls[1]) summaryEls[1].textContent = inProg;
+    if (summaryEls[2]) summaryEls[2].textContent = resolved;
+  })();
+</script>
 </body></html>

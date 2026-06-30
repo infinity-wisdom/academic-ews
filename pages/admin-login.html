@@ -126,12 +126,12 @@
 <form action="#" class="space-y-5" method="POST" onsubmit="return false;">
 <!-- Username / Email -->
 <div>
-<label class="block font-label-sm text-label-sm text-on-surface mb-1" for="username">Username or Email</label>
+<label class="block font-label-sm text-label-sm text-on-surface mb-1" for="email">Email</label>
 <div class="relative">
 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
 <span class="material-symbols-outlined text-outline">person</span>
 </div>
-<input class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder-on-surface-variant input-focus transition-all duration-200 outline-none" id="username" name="username" placeholder="admin@institution.edu" required="" type="text"/>
+<input autocomplete="email" class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder-on-surface-variant input-focus transition-all duration-200 outline-none" id="email" name="email" placeholder="admin@institution.edu" required="" type="email"/>
 </div>
 </div>
 <!-- Password -->
@@ -142,16 +142,6 @@
 <span class="material-symbols-outlined text-outline">lock</span>
 </div>
 <input class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder-on-surface-variant input-focus transition-all duration-200 outline-none" id="password" name="password" placeholder="••••••••" required="" type="password"/>
-</div>
-</div>
-<!-- Security Token -->
-<div>
-<label class="block font-label-sm text-label-sm text-on-surface mb-1" for="token">Security Token</label>
-<div class="relative">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-<span class="material-symbols-outlined text-outline">key</span>
-</div>
-<input class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder-on-surface-variant input-focus transition-all duration-200 outline-none" id="token" name="token" placeholder="Enter 6-digit MFA code" required="" type="text"/>
 </div>
 </div>
 <!-- Remember Me & Forgot Password (Optional, good practice) -->
@@ -168,10 +158,11 @@
 </div>
 <!-- Submit Button -->
 <div class="pt-2">
-<button class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm font-label-sm text-label-sm text-white bg-admin-indigo hover:bg-admin-indigo/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-admin-indigo transition-colors duration-200" onclick="window.location.href='admin-panel.html'" type="submit">
+<button class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm font-label-sm text-label-sm text-white bg-admin-indigo hover:bg-admin-indigo/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-admin-indigo transition-colors duration-200" id="sign-in-btn" type="submit">
                         Login to Admin Dashboard
                     </button>
 </div>
+<p class="hidden text-center font-caption-xs text-caption-xs text-red-600" id="error-message"></p>
 </form>
 <!-- Footer -->
 <div class="mt-8 text-center">
@@ -182,4 +173,55 @@
 </div>
 </div>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase-client.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script>
+    const signInBtn = document.getElementById('sign-in-btn');
+    const errorMessage = document.getElementById('error-message');
+
+    function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.classList.remove('hidden');
+    }
+
+    signInBtn.addEventListener('click', async () => {
+        errorMessage.classList.add('hidden');
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+
+        if (!email || !password) {
+            showError('Please enter your email and password.');
+            return;
+        }
+
+        signInBtn.disabled = true;
+        signInBtn.textContent = 'Signing in…';
+
+        const { data, error } = await window.supabaseClient.auth.signInWithPassword({ email, password });
+
+        if (error) {
+            showError(error.message);
+            signInBtn.disabled = false;
+            signInBtn.textContent = 'Login to Admin Dashboard';
+            return;
+        }
+
+        const { data: profile, error: profileError } = await window.supabaseClient
+            .from('profiles')
+            .select('role')
+            .eq('id', data.user.id)
+            .single();
+
+        if (profileError || !profile || profile.role !== 'admin') {
+            showError('This account does not have administrator access.');
+            await window.supabaseClient.auth.signOut();
+            signInBtn.disabled = false;
+            signInBtn.textContent = 'Login to Admin Dashboard';
+            return;
+        }
+
+        window.location.href = 'admin-panel.html';
+    });
+</script>
 </body></html>

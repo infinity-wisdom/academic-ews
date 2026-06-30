@@ -250,11 +250,11 @@
 <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
 <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
 </button>
-<button class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors p-2 rounded-full">
+<button class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors p-2 rounded-full" id="logout-btn">
 <span class="material-symbols-outlined" data-icon="logout">logout</span>
 </button>
-<div class="h-8 w-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm font-bold ml-2 cursor-pointer border border-outline-variant/30">
-                    JD
+<div class="h-8 w-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm font-bold ml-2 cursor-pointer border border-outline-variant/30" id="avatar-initials">
+                    --
                 </div>
 </div>
 </header>
@@ -285,7 +285,7 @@
 <div class="flex items-start justify-between">
 <div>
 <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Total Students</p>
-<h3 class="font-headline-h1 text-headline-h1 text-on-surface mt-2">1,472</h3>
+<h3 class="font-headline-h1 text-headline-h1 text-on-surface mt-2" id="kpi-total">--</h3>
 </div>
 <div class="p-2 rounded-lg bg-surface-container-high text-on-surface-variant">
 <span class="material-symbols-outlined">group</span>
@@ -301,7 +301,7 @@
 <div class="flex items-start justify-between">
 <div>
 <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Critical Alerts</p>
-<h3 class="font-headline-h1 text-headline-h1 text-error mt-2">84</h3>
+<h3 class="font-headline-h1 text-headline-h1 text-error mt-2" id="kpi-critical">--</h3>
 </div>
 <div class="p-2 rounded-lg bg-error-container text-on-error-container">
 <span class="material-symbols-outlined">error</span>
@@ -317,7 +317,7 @@
 <div class="flex items-start justify-between">
 <div>
 <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Warning Alerts</p>
-<h3 class="font-headline-h1 text-headline-h1 text-surface-tint mt-2">156</h3>
+<h3 class="font-headline-h1 text-headline-h1 text-surface-tint mt-2" id="kpi-warning">--</h3>
 </div>
 <div class="p-2 rounded-lg bg-[#FFF4E5] text-[#B0721E]">
 <span class="material-symbols-outlined">warning</span>
@@ -333,7 +333,7 @@
 <div class="flex items-start justify-between">
 <div>
 <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">On Track</p>
-<h3 class="font-headline-h1 text-headline-h1 text-[#2E7D32] mt-2">1,232</h3>
+<h3 class="font-headline-h1 text-headline-h1 text-[#2E7D32] mt-2" id="kpi-ontrack">--</h3>
 </div>
 <div class="p-2 rounded-lg bg-[#E8F5E9] text-[#2E7D32]">
 <span class="material-symbols-outlined">check_circle</span>
@@ -387,95 +387,8 @@
 <th class="p-4 font-label-sm text-label-sm text-on-surface-variant uppercase font-medium text-right">Actions</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-surface-container-high">
-<!-- Row 1 - Critical -->
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="p-4 font-body-md text-body-md text-on-surface-variant">STU-8492</td>
-<td class="p-4 font-body-md text-body-md font-medium text-on-surface">Sarah Jenkins</td>
-<td class="p-4 font-body-md text-body-md text-on-surface-variant">CS101</td>
-<td class="p-4">
-<div class="flex items-center space-x-2">
-<div class="w-full bg-surface-variant rounded-full h-2">
-<div class="bg-error h-2 rounded-full" style="width: 45%"></div>
-</div>
-<span class="font-caption-xs text-caption-xs text-error">45%</span>
-</div>
-</td>
-<td class="p-4 font-body-md text-body-md text-on-surface text-right">52%</td>
-<td class="p-4 font-body-md text-body-md text-error font-semibold text-right">88%</td>
-<td class="p-4 text-center">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-error text-on-error">Critical</span>
-</td>
-<td class="p-4 text-right">
-<button class="bg-[#D92D20] text-white px-3 py-1.5 rounded-md font-label-sm text-label-sm hover:bg-[#B42318] transition-colors">Analyze</button>
-</td>
-</tr>
-<!-- Row 2 - Critical -->
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="p-4 font-body-md text-body-md text-on-surface-variant">STU-1042</td>
-<td class="p-4 font-body-md text-body-md font-medium text-on-surface">Marcus Chen</td>
-<td class="p-4 font-body-md text-body-md text-on-surface-variant">MATH202</td>
-<td class="p-4">
-<div class="flex items-center space-x-2">
-<div class="w-full bg-surface-variant rounded-full h-2">
-<div class="bg-error h-2 rounded-full" style="width: 60%"></div>
-</div>
-<span class="font-caption-xs text-caption-xs text-error">60%</span>
-</div>
-</td>
-<td class="p-4 font-body-md text-body-md text-on-surface text-right">48%</td>
-<td class="p-4 font-body-md text-body-md text-error font-semibold text-right">92%</td>
-<td class="p-4 text-center">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-error text-on-error">Critical</span>
-</td>
-<td class="p-4 text-right">
-<button class="bg-[#D92D20] text-white px-3 py-1.5 rounded-md font-label-sm text-label-sm hover:bg-[#B42318] transition-colors">Analyze</button>
-</td>
-</tr>
-<!-- Row 3 - Warning -->
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="p-4 font-body-md text-body-md text-on-surface-variant">STU-9921</td>
-<td class="p-4 font-body-md text-body-md font-medium text-on-surface">Emily Rodriguez</td>
-<td class="p-4 font-body-md text-body-md text-on-surface-variant">ENG105</td>
-<td class="p-4">
-<div class="flex items-center space-x-2">
-<div class="w-full bg-surface-variant rounded-full h-2">
-<div class="bg-[#F59E0B] h-2 rounded-full" style="width: 75%"></div>
-</div>
-<span class="font-caption-xs text-caption-xs text-[#B0721E]">75%</span>
-</div>
-</td>
-<td class="p-4 font-body-md text-body-md text-on-surface text-right">68%</td>
-<td class="p-4 font-body-md text-body-md text-[#B0721E] font-semibold text-right">65%</td>
-<td class="p-4 text-center">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#FFF4E5] text-[#B0721E]">Warning</span>
-</td>
-<td class="p-4 text-right">
-<button class="bg-[#3F51B5] text-white px-3 py-1.5 rounded-md font-label-sm text-label-sm hover:bg-[#303F9F] transition-colors">Analyze</button>
-</td>
-</tr>
-<!-- Row 4 - Warning -->
-<tr class="hover:bg-surface-container-low/50 transition-colors">
-<td class="p-4 font-body-md text-body-md text-on-surface-variant">STU-3345</td>
-<td class="p-4 font-body-md text-body-md font-medium text-on-surface">James Wilson</td>
-<td class="p-4 font-body-md text-body-md text-on-surface-variant">CS101</td>
-<td class="p-4">
-<div class="flex items-center space-x-2">
-<div class="w-full bg-surface-variant rounded-full h-2">
-<div class="bg-[#F59E0B] h-2 rounded-full" style="width: 80%"></div>
-</div>
-<span class="font-caption-xs text-caption-xs text-[#B0721E]">80%</span>
-</div>
-</td>
-<td class="p-4 font-body-md text-body-md text-on-surface text-right">62%</td>
-<td class="p-4 font-body-md text-body-md text-[#B0721E] font-semibold text-right">58%</td>
-<td class="p-4 text-center">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#FFF4E5] text-[#B0721E]">Warning</span>
-</td>
-<td class="p-4 text-right">
-<button class="bg-[#3F51B5] text-white px-3 py-1.5 rounded-md font-label-sm text-label-sm hover:bg-[#303F9F] transition-colors">Analyze</button>
-</td>
-</tr>
+<tbody class="divide-y divide-surface-container-high" id="roster-tbody">
+<tr><td class="p-4 text-on-surface-variant" colspan="8">Loading your students…</td></tr>
 </tbody>
 </table>
 </div>
@@ -494,4 +407,101 @@
 </div>
 </main>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase-client.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script>
+    (async () => {
+        const profile = await requireRole(['advisor'], 'login.html');
+        if (!profile) return;
+
+        document.getElementById('avatar-initials').textContent = profile.full_name
+            .split(' ').map(p => p[0]).slice(0, 2).join('').toUpperCase();
+
+        document.getElementById('logout-btn').addEventListener('click', () => signOutAndRedirect('login.html'));
+
+        // All students assigned to this advisor, with their latest risk score
+        // and their enrollments (so we can show one row per course).
+        const { data: students, error } = await window.supabaseClient
+            .from('profiles')
+            .select(`
+                id, full_name, student_id,
+                risk_scores ( score, level, calculated_at ),
+                enrollments ( current_grade, attendance_rate, status, courses ( code, name ) )
+            `)
+            .eq('advisor_id', profile.id)
+            .eq('role', 'student');
+
+        const tbody = document.getElementById('roster-tbody');
+
+        if (error) {
+            tbody.innerHTML = `<tr><td class="p-4 text-red-600" colspan="8">Could not load students: ${error.message}</td></tr>`;
+            return;
+        }
+
+        if (!students || students.length === 0) {
+            tbody.innerHTML = `<tr><td class="p-4 text-on-surface-variant" colspan="8">No students are assigned to you yet. Assign students via the Supabase Table Editor (set their profiles.advisor_id) or the admin panel.</td></tr>`;
+            document.getElementById('kpi-total').textContent = '0';
+            document.getElementById('kpi-critical').textContent = '0';
+            document.getElementById('kpi-warning').textContent = '0';
+            document.getElementById('kpi-ontrack').textContent = '0';
+            return;
+        }
+
+        const statusBadge = {
+            on_track: 'bg-[#E8F5E9] text-[#2E7D32]',
+            warning: 'bg-[#FFF4E5] text-[#B0721E]',
+            critical: 'bg-error text-on-error',
+        };
+        const statusLabel = { on_track: 'On Track', warning: 'Warning', critical: 'Critical' };
+        const barColor = { on_track: 'bg-[#2E7D32]', warning: 'bg-[#F59E0B]', critical: 'bg-error' };
+
+        let rowsHtml = '';
+        let critical = 0, warning = 0, onTrack = 0;
+
+        students.forEach(student => {
+            const latestRisk = (student.risk_scores || [])
+                .sort((a, b) => new Date(b.calculated_at) - new Date(a.calculated_at))[0];
+            const enrollments = student.enrollments && student.enrollments.length > 0
+                ? student.enrollments
+                : [{ courses: null, current_grade: null, attendance_rate: null, status: 'on_track' }];
+
+            enrollments.forEach(en => {
+                const status = en.status || 'on_track';
+                if (status === 'critical') critical++;
+                else if (status === 'warning') warning++;
+                else onTrack++;
+
+                rowsHtml += `
+                    <tr class="hover:bg-surface-container-low/50 transition-colors">
+                        <td class="p-4 font-body-md text-body-md text-on-surface-variant">${student.student_id || '—'}</td>
+                        <td class="p-4 font-body-md text-body-md font-medium text-on-surface">${student.full_name}</td>
+                        <td class="p-4 font-body-md text-body-md text-on-surface-variant">${en.courses ? en.courses.code : '—'}</td>
+                        <td class="p-4">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-full bg-surface-variant rounded-full h-2">
+                                    <div class="${barColor[status]} h-2 rounded-full" style="width: ${en.attendance_rate || 0}%"></div>
+                                </div>
+                                <span class="font-caption-xs text-caption-xs">${en.attendance_rate ?? '—'}%</span>
+                            </div>
+                        </td>
+                        <td class="p-4 font-body-md text-body-md text-on-surface text-right">${en.current_grade ?? '—'}%</td>
+                        <td class="p-4 font-body-md text-body-md font-semibold text-right">${latestRisk ? latestRisk.score + '%' : '—'}</td>
+                        <td class="p-4 text-center">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm ${statusBadge[status]}">${statusLabel[status]}</span>
+                        </td>
+                        <td class="p-4 text-right">
+                            <a class="inline-block bg-[#3F51B5] text-white px-3 py-1.5 rounded-md font-label-sm text-label-sm hover:bg-[#303F9F] transition-colors" href="risk-analysis-modal.html">Analyze</a>
+                        </td>
+                    </tr>`;
+            });
+        });
+
+        tbody.innerHTML = rowsHtml;
+        document.getElementById('kpi-total').textContent = students.length;
+        document.getElementById('kpi-critical').textContent = critical;
+        document.getElementById('kpi-warning').textContent = warning;
+        document.getElementById('kpi-ontrack').textContent = onTrack;
+    })();
+</script>
 </body></html>

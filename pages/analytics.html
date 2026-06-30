@@ -293,4 +293,12 @@
 <div class="absolute inset-0 flex flex-col justify-between z-0 pb-6 opacity-30 pointer-events-none">
 <div class="border-b border-outline-variant w-full h-0"></div>
 <div class="border-b border-outline-variant w-full h-0"></div>
-</div></div></div></div></div></main></div></body></html>
+</div></div></div></div></div></main></div><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase-client.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script>
+    (async () => {
+        await requireRole(['advisor', 'admin'], 'login.html');
+    })();
+</script>
+</body></html>

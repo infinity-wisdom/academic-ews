@@ -166,7 +166,7 @@
 <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-error rounded-full"></span>
 </button>
 <div class="h-6 w-px bg-outline-variant"></div>
-<button class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed">
+<button class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed" id="logout-btn">
 <span class="material-symbols-outlined" data-icon="logout">logout</span>
 </button>
 <img class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A small circular avatar placeholder image showing a professional, modern abstract geometric pattern in shades of corporate blue and white. High contrast, clean lines, suitable for an enterprise SaaS application profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGipBI7_726wHEtAoZLgSLQR_Po4SGFVY6mCbm2oTluuggiz_NVy1Gu6kpIoKMPHqe3YMPdqTd9K1sgyAPHr0Wt_2GT3Jg6a88DbyM4nQ3JPEpLJglg0BtkNLSdhldhSsmGdM8gpoXl5P_9S-F0yaEXhPFJRn086cObxZaH6J2pGX8nltrf66pf6MOtq8pzyMx-mRUW2ID5WF28zmCYmGpPIykZvU_z2yEXp0CE7AwB2w1U_j8RvtHnCNeZsvWzWuUQNUchnHwFjo"/>
@@ -348,4 +348,85 @@
 </div>
 </main>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase-client.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script>
+  (async () => {
+    const profile = await requireRole(['admin'], 'admin-login.html');
+    if (!profile) return;
+    document.getElementById('logout-btn').addEventListener('click', () => signOutAndRedirect('admin-login.html'));
+
+    // ── Load all profiles (users) into the first table ──────────────
+    const usersTbody = document.querySelectorAll('tbody')[0];
+    const { data: users, error: usersErr } = await window.supabaseClient
+      .from('profiles')
+      .select('id, full_name, email, role, student_id, created_at')
+      .order('created_at', { ascending: false });
+
+    if (!usersErr && users && users.length > 0) {
+      const roleBadge = {
+        student: 'bg-blue-100 text-blue-800',
+        advisor: 'bg-purple-100 text-purple-800',
+        admin:   'bg-red-100 text-red-800'
+      };
+      usersTbody.innerHTML = users.map(u => `
+        <tr class="hover:bg-surface-container-low/50 transition-colors border-b border-surface-container-high">
+          <td class="p-4 font-medium">${u.full_name}</td>
+          <td class="p-4 text-on-surface-variant text-sm">${u.email}</td>
+          <td class="p-4">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-medium ${roleBadge[u.role] || ''}">
+              ${u.role.charAt(0).toUpperCase() + u.role.slice(1)}
+            </span>
+          </td>
+          <td class="p-4 text-on-surface-variant text-sm">${u.student_id || '—'}</td>
+          <td class="p-4 text-on-surface-variant text-sm">${new Date(u.created_at).toLocaleDateString()}</td>
+          <td class="p-4">
+            <select class="text-sm border border-outline-variant rounded px-2 py-1 bg-white" data-uid="${u.id}" onchange="updateRole(this)">
+              <option value="student" ${u.role==='student'?'selected':''}>Student</option>
+              <option value="advisor" ${u.role==='advisor'?'selected':''}>Advisor</option>
+              <option value="admin"   ${u.role==='admin'  ?'selected':''}>Admin</option>
+            </select>
+          </td>
+        </tr>`).join('');
+    } else {
+      usersTbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-on-surface-variant">No users found.</td></tr>`;
+    }
+
+    // ── Load all interventions into the second table ─────────────────
+    const ivTbody = document.querySelectorAll('tbody')[1];
+    if (ivTbody) {
+      const { data: ivs } = await window.supabaseClient
+        .from('interventions')
+        .select('id, type, status, created_at, students:student_id(full_name), advisors:advisor_id(full_name)')
+        .order('created_at', { ascending: false });
+
+      if (ivs && ivs.length > 0) {
+        ivTbody.innerHTML = ivs.map(iv => `
+          <tr class="border-b border-surface-container-high hover:bg-surface-container-low/50">
+            <td class="p-4">${iv.students?.full_name || '—'}</td>
+            <td class="p-4">${iv.type}</td>
+            <td class="p-4 text-on-surface-variant text-sm">${iv.advisors?.full_name || '—'}</td>
+            <td class="p-4"><span class="text-xs font-medium px-2 py-0.5 rounded-full bg-gray-100">${iv.status}</span></td>
+            <td class="p-4 text-sm text-on-surface-variant">${new Date(iv.created_at).toLocaleDateString()}</td>
+          </tr>`).join('');
+      } else {
+        ivTbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-on-surface-variant">No interventions found.</td></tr>`;
+      }
+    }
+  })();
+
+  // Role update handler (called from select onChange)
+  async function updateRole(select) {
+    const uid  = select.getAttribute('data-uid');
+    const role = select.value;
+    const { error } = await window.supabaseClient
+      .from('profiles')
+      .update({ role })
+      .eq('id', uid);
+    if (error) { alert('Failed to update role: ' + error.message); return; }
+    select.closest('td').previousElementSibling.previousElementSibling.querySelector('span').textContent =
+      role.charAt(0).toUpperCase() + role.slice(1);
+  }
+</script>
 </body></html>

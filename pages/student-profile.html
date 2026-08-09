@@ -187,6 +187,10 @@
 <span class="material-symbols-outlined group-hover:text-white transition-colors" data-icon="help">help</span>
 <span class="font-label-sm text-label-sm group-hover:text-white transition-colors">Support</span>
 </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 rounded-lg group" href="#" id="profile-logout-link">
+<span class="material-symbols-outlined group-hover:text-white transition-colors" data-icon="logout">logout</span>
+<span class="font-label-sm text-label-sm group-hover:text-white transition-colors">Log Out</span>
+</a>
 </nav>
 <!-- Student ID Badge (Bottom of Sidebar) -->
 <div class="p-6 border-t border-white/10">
@@ -240,7 +244,7 @@
 </div>
 <div class="flex-1 z-10">
 <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-2">
-<h2 class="font-headline-h1 text-headline-h1 md:text-[32px] md:leading-[40px] text-primary">Alex Johnson</h2>
+<h2 class="font-headline-h1 text-headline-h1 md:text-[32px] md:leading-[40px] text-primary" id="student-name">Alex Johnson</h2>
 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-caption-xs font-medium bg-secondary-fixed text-on-secondary-fixed-variant border border-secondary-fixed-dim self-start md:self-auto">
                                 Sophomore
                             </span>
@@ -248,7 +252,7 @@
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
 <div class="flex items-center gap-2 text-on-surface-variant">
 <span class="material-symbols-outlined text-[18px]" data-icon="badge">badge</span>
-<span class="font-label-sm text-label-sm">ID: 987654321</span>
+<span class="font-label-sm text-label-sm" id="student-id-field">ID: 987654321</span>
 </div>
 <div class="flex items-center gap-2 text-on-surface-variant">
 <span class="material-symbols-outlined text-[18px]" data-icon="book">book</span>
@@ -276,7 +280,7 @@
 </div>
 </div>
 <div class="flex items-baseline gap-2">
-<span class="font-headline-h1 text-[36px] leading-[44px] text-primary">3.4</span>
+<span class="font-headline-h1 text-[36px] leading-[44px] text-primary" id="student-gpa">3.4</span>
 <span class="font-body-md text-on-surface-variant">/ 4.0</span>
 </div>
 <div class="mt-4 flex items-center gap-2 text-caption-xs font-medium text-surface-tint">
@@ -449,7 +453,7 @@
 </div>
 <div class="space-y-4">
 <!-- Academic Success Center -->
-<a class="block p-4 rounded-lg border border-outline-variant/50 hover:bg-surface-container transition-colors group" href="#">
+<a class="block p-4 rounded-lg border border-outline-variant/50 hover:bg-surface-container transition-colors group" href="interventions.html">
 <div class="flex items-start gap-3">
 <span class="material-symbols-outlined text-secondary mt-0.5 group-hover:scale-110 transition-transform" data-icon="auto_stories">auto_stories</span>
 <div>
@@ -477,7 +481,7 @@
 <a class="w-full py-2 px-4 rounded bg-surface-container border border-outline-variant hover:bg-surface-container-high transition-colors text-center font-label-sm text-label-sm text-primary flex items-center justify-center gap-2" href="mailto:s.jenkins@edutrack.edu">
 <span class="material-symbols-outlined text-[18px]">mail</span> Email Advisor
                                         </a>
-<a class="w-full py-2 px-4 rounded bg-secondary text-white hover:bg-secondary/90 transition-colors text-center font-label-sm text-label-sm shadow-sm flex items-center justify-center gap-2" href="#">
+<a class="w-full py-2 px-4 rounded bg-secondary text-white hover:bg-secondary/90 transition-colors text-center font-label-sm text-label-sm shadow-sm flex items-center justify-center gap-2" href="interventions.html">
 <span class="material-symbols-outlined text-[18px]">calendar_month</span> Schedule Meeting
                                         </a>
 </div>
@@ -494,7 +498,50 @@
 <script src="../assets/js/auth.js"></script>
 <script>
     (async () => {
-        await requireRole(['advisor', 'admin'], 'login.html');
+        const profile = await requireRole(['advisor', 'admin'], 'login.html');
+        if (!profile) return;
+
+        const logoutTarget = profile.role === 'admin' ? 'admin-login.html' : 'login.html';
+        document.getElementById('profile-logout-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            signOutAndRedirect(logoutTarget);
+        });
+
+        // Which student are we viewing? Passed as ?id=<uuid> from the
+        // advisor dashboard roster ("Students" link) or Analyze button.
+        const params = new URLSearchParams(window.location.search);
+        const studentId = params.get('id');
+
+        if (!studentId) {
+            document.getElementById('student-name').textContent = 'No student selected';
+            document.getElementById('student-id-field').innerHTML = 'Go to <a href="roster.html" class="text-secondary hover:underline">your student roster</a> and pick a student to view their profile.';
+            return;
+        }
+
+        const { data: student, error } = await window.supabaseClient
+            .from('profiles')
+            .select(`
+                full_name, student_id, avatar_url,
+                enrollments ( current_grade, attendance_rate, status, courses ( code, name ) ),
+                risk_scores ( score, level, calculated_at )
+            `)
+            .eq('id', studentId)
+            .single();
+
+        if (error || !student) {
+            document.getElementById('student-name').textContent = 'Student not found';
+            return;
+        }
+
+        document.getElementById('student-name').textContent = student.full_name;
+        document.getElementById('student-id-field').textContent = `ID: ${student.student_id || '—'}`;
+
+        // Approximate GPA from average grade (100pt scale -> 4.0 scale)
+        const enrollments = student.enrollments || [];
+        if (enrollments.length > 0) {
+            const avgGrade = enrollments.reduce((s, e) => s + (e.current_grade || 0), 0) / enrollments.length;
+            document.getElementById('student-gpa').textContent = (avgGrade / 25).toFixed(1);
+        }
     })();
 </script>
 </body></html>

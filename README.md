@@ -42,9 +42,11 @@ Colors, type scale, spacing, and component rules are documented in `assets/DESIG
 
 ## Status / next steps
 
-- [ ] Connect forms (login, upload data) to a real backend/API
-- [ ] Replace placeholder student/course data with live data
-- [ ] Add authentication and role-based access (student / advisor / admin)
+- [x] Every page's navigation matches the intended role tree (Visitor / Student / Advisor / Admin) — audited and fixed
+- [x] Every page has working logout wired to Supabase
+- [x] `student-profile.html` and `risk-analysis-modal.html` load a real, specific student via `?id=<uuid>` instead of showing static placeholder data
+- [x] Added `roster.html` — a searchable list of an advisor's assigned students (or all students, for admins), linking to each student's profile
+- [ ] Replace placeholder course/analytics data with live data everywhere
 - [ ] Add automated tests
 
 ## Tech stack

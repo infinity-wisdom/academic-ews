@@ -125,7 +125,7 @@
 <span class="material-symbols-outlined text-on-primary-container group-hover:text-surface-container-lowest transition-colors">dashboard</span>
 <span class="font-label-sm text-label-sm group-hover:text-surface-container-lowest transition-colors">Dashboard</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95 group" href="student-profile.html">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95 group" href="roster.html">
 <span class="material-symbols-outlined text-on-primary-container group-hover:text-surface-container-lowest transition-colors">school</span>
 <span class="font-label-sm text-label-sm group-hover:text-surface-container-lowest transition-colors">Students</span>
 </a>
@@ -173,6 +173,9 @@
 </button>
 <button class="p-2 text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors rounded-full cursor-pointer">
 <span class="material-symbols-outlined">mail</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors rounded-full cursor-pointer" id="logout-btn" title="Logout">
+<span class="material-symbols-outlined">logout</span>
 </button>
 <div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
 <button class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
@@ -333,7 +336,9 @@
 <script src="../assets/js/auth.js"></script>
 <script>
     (async () => {
-        await requireRole(['advisor', 'admin'], 'login.html');
+        const profile = await requireRole(['advisor', 'admin'], 'login.html');
+        if (!profile) return;
+        document.getElementById('logout-btn').addEventListener('click', () => signOutAndRedirect('login.html'));
     })();
 </script>
 </body></html>

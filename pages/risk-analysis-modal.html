@@ -183,13 +183,13 @@
 <!-- Modal Header -->
 <div class="p-6 border-b border-outline-variant/20 flex justify-between items-start">
 <div>
-<h3 class="font-headline-h2 text-headline-h2 text-on-surface">Sarah Jenkins <span class="text-on-surface-variant font-normal">(STU-8492)</span></h3>
+<h3 class="font-headline-h2 text-headline-h2 text-on-surface" id="modal-student-name">Sarah Jenkins <span class="text-on-surface-variant font-normal" id="modal-student-idnum">(STU-8492)</span></h3>
 <div class="flex items-center gap-2 mt-2">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-error text-on-error">Critical</span>
-<span class="font-label-sm text-label-sm text-error font-bold">88% Risk Probability</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-error text-on-error" id="modal-risk-level">Critical</span>
+<span class="font-label-sm text-label-sm text-error font-bold" id="modal-risk-score">88% Risk Probability</span>
 </div>
 </div>
-<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors" id="modal-close-btn">
 <span class="material-symbols-outlined">close</span>
 </button>
 </div>
@@ -259,7 +259,7 @@
 <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
 <span>Dashboard</span>
 </a>
-<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors Active: scale-[0.98] transition-all border-l-4 border-transparent" href="student-profile.html">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors Active: scale-[0.98] transition-all border-l-4 border-transparent" href="roster.html">
 <span class="material-symbols-outlined" data-icon="group">group</span>
 <span>Students</span>
 </a>
@@ -312,7 +312,7 @@
 <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
 <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
 </button>
-<button class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors p-2 rounded-full">
+<button class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors p-2 rounded-full" id="logout-btn">
 <span class="material-symbols-outlined" data-icon="logout">logout</span>
 </button>
 <div class="h-8 w-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm font-bold ml-2 cursor-pointer border border-outline-variant/30">
@@ -561,7 +561,49 @@
 <script src="../assets/js/auth.js"></script>
 <script>
     (async () => {
-        await requireRole(['advisor', 'admin'], 'login.html');
+        const profile = await requireRole(['advisor', 'admin'], 'login.html');
+        if (!profile) return;
+
+        document.getElementById('logout-btn').addEventListener('click', () => signOutAndRedirect('login.html'));
+
+        // Closing the modal returns to the advisor dashboard behind it.
+        document.getElementById('modal-close-btn').addEventListener('click', () => {
+            window.location.href = 'advisor-dashboard.html';
+        });
+
+        const params = new URLSearchParams(window.location.search);
+        const studentId = params.get('id');
+        if (!studentId) return; // fall back to the static example shown in the design
+
+        const { data: student, error } = await window.supabaseClient
+            .from('profiles')
+            .select(`
+                full_name, student_id,
+                risk_scores ( score, level, calculated_at )
+            `)
+            .eq('id', studentId)
+            .single();
+
+        if (error || !student) return;
+
+        const latestRisk = (student.risk_scores || [])
+            .sort((a, b) => new Date(b.calculated_at) - new Date(a.calculated_at))[0];
+
+        document.getElementById('modal-student-name').innerHTML =
+            `${student.full_name} <span class="text-on-surface-variant font-normal">(${student.student_id || '—'})</span>`;
+
+        if (latestRisk) {
+            const levelStyles = {
+                high:   'bg-error text-on-error',
+                medium: 'bg-[#FFF4E5] text-[#B0721E]',
+                low:    'bg-[#E8F5E9] text-[#2E7D32]'
+            };
+            const levelLabel = { high: 'Critical', medium: 'Warning', low: 'Low Risk' };
+            const badge = document.getElementById('modal-risk-level');
+            badge.className = `inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm ${levelStyles[latestRisk.level] || ''}`;
+            badge.textContent = levelLabel[latestRisk.level] || latestRisk.level;
+            document.getElementById('modal-risk-score').textContent = `${latestRisk.score}% Risk Probability`;
+        }
     })();
 </script>
 </body></html>

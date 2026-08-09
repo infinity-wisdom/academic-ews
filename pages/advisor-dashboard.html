@@ -197,7 +197,7 @@
 <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
 <span>Dashboard</span>
 </a>
-<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors Active: scale-[0.98] transition-all border-l-4 border-transparent" href="student-profile.html">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors Active: scale-[0.98] transition-all border-l-4 border-transparent" href="roster.html">
 <span class="material-symbols-outlined" data-icon="group">group</span>
 <span>Students</span>
 </a>
@@ -475,7 +475,9 @@
                 rowsHtml += `
                     <tr class="hover:bg-surface-container-low/50 transition-colors">
                         <td class="p-4 font-body-md text-body-md text-on-surface-variant">${student.student_id || '—'}</td>
-                        <td class="p-4 font-body-md text-body-md font-medium text-on-surface">${student.full_name}</td>
+                        <td class="p-4 font-body-md text-body-md font-medium text-on-surface">
+                            <a class="hover:underline hover:text-secondary" href="student-profile.html?id=${student.id}">${student.full_name}</a>
+                        </td>
                         <td class="p-4 font-body-md text-body-md text-on-surface-variant">${en.courses ? en.courses.code : '—'}</td>
                         <td class="p-4">
                             <div class="flex items-center space-x-2">
@@ -491,7 +493,7 @@
                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm ${statusBadge[status]}">${statusLabel[status]}</span>
                         </td>
                         <td class="p-4 text-right">
-                            <a class="inline-block bg-[#3F51B5] text-white px-3 py-1.5 rounded-md font-label-sm text-label-sm hover:bg-[#303F9F] transition-colors" href="risk-analysis-modal.html">Analyze</a>
+                            <a class="inline-block bg-[#3F51B5] text-white px-3 py-1.5 rounded-md font-label-sm text-label-sm hover:bg-[#303F9F] transition-colors" href="risk-analysis-modal.html?id=${student.id}">Analyze</a>
                         </td>
                     </tr>`;
             });

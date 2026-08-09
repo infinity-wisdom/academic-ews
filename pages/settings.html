@@ -122,31 +122,31 @@
 <!-- Main Navigation Tabs -->
 <ul class="flex-1 overflow-y-auto font-label-sm text-label-sm">
 <li>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="advisor-dashboard.html" id="nav-dashboard">
 <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
                     Dashboard
                 </a>
 </li>
-<li>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<li data-advisor-only>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="roster.html">
 <span class="material-symbols-outlined" data-icon="school">school</span>
                     Students
                 </a>
 </li>
-<li>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<li data-advisor-only>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="analytics.html">
 <span class="material-symbols-outlined" data-icon="analytics">analytics</span>
                     Analytics
                 </a>
 </li>
-<li>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<li data-advisor-only>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="interventions.html">
 <span class="material-symbols-outlined" data-icon="emergency_home">emergency_home</span>
                     Interventions
                 </a>
 </li>
-<li>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<li data-advisor-only>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="reports.html">
 <span class="material-symbols-outlined" data-icon="assessment">assessment</span>
                     Reports
                 </a>
@@ -156,15 +156,15 @@
 <div class="border-t border-white/10 pt-4 pb-6 mt-auto font-label-sm text-label-sm">
 <ul>
 <li>
-<a class="flex items-center gap-3 px-4 py-3 bg-white/10 border-l-4 border-secondary text-surface-container-lowest transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<a class="flex items-center gap-3 px-4 py-3 bg-white/10 border-l-4 border-secondary text-surface-container-lowest transition-colors duration-200 cursor-pointer active:scale-95" href="settings.html">
 <span class="material-symbols-outlined" data-icon="settings">settings</span>
                         Settings
                     </a>
 </li>
 <li>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="#">
-<span class="material-symbols-outlined" data-icon="help">help</span>
-                        Support
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 cursor-pointer active:scale-95" href="#" id="settings-logout-link">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                        Log Out
                     </a>
 </li>
 </ul>
@@ -372,7 +372,21 @@
 <script src="../assets/js/auth.js"></script>
 <script>
     (async () => {
-        await requireRole(['advisor', 'admin'], 'login.html');
+        const profile = await requireRole(['student', 'advisor', 'admin'], 'login.html');
+        if (!profile) return;
+
+        // Students get a simpler sidebar: hide advisor/admin-only nav items
+        // and send "Dashboard" to their own dashboard instead of the advisor one.
+        if (profile.role === 'student') {
+            document.querySelectorAll('[data-advisor-only]').forEach(el => el.style.display = 'none');
+            document.getElementById('nav-dashboard').setAttribute('href', 'student-dashboard.html');
+        }
+
+        const logoutTarget = profile.role === 'admin' ? 'admin-login.html' : 'login.html';
+        document.getElementById('settings-logout-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            signOutAndRedirect(logoutTarget);
+        });
     })();
 </script>
 </body></html>

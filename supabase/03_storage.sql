@@ -17,10 +17,12 @@ on conflict (id) do nothing;
 -- AVATARS — public read, but you can only upload/replace your own
 -- (file path convention: avatars/{user_id}/filename.ext)
 -- ---------------------------------------------------------
+drop policy if exists "anyone can view avatars" on storage.objects;
 create policy "anyone can view avatars"
   on storage.objects for select
   using (bucket_id = 'avatars');
 
+drop policy if exists "users upload their own avatar" on storage.objects;
 create policy "users upload their own avatar"
   on storage.objects for insert
   with check (
@@ -28,6 +30,7 @@ create policy "users upload their own avatar"
     and (storage.foldername(name))[1] = auth.uid()::text
   );
 
+drop policy if exists "users update their own avatar" on storage.objects;
 create policy "users update their own avatar"
   on storage.objects for update
   using (
@@ -38,16 +41,18 @@ create policy "users update their own avatar"
 -- ---------------------------------------------------------
 -- DATA UPLOADS — private, advisor/admin only
 -- ---------------------------------------------------------
+drop policy if exists "advisors and admins read data uploads" on storage.objects;
 create policy "advisors and admins read data uploads"
   on storage.objects for select
   using (
     bucket_id = 'data-uploads'
-    and public.current_role() in ('advisor', 'admin')
+    and public.get_user_role() in ('advisor', 'admin')
   );
 
+drop policy if exists "advisors and admins upload data files" on storage.objects;
 create policy "advisors and admins upload data files"
   on storage.objects for insert
   with check (
     bucket_id = 'data-uploads'
-    and public.current_role() in ('advisor', 'admin')
+    and public.get_user_role() in ('advisor', 'admin')
   );

@@ -315,7 +315,7 @@
 <script src="../assets/js/auth.js"></script>
 <script>
   (async () => {
-    const profile = await requireRole(['student', 'advisor', 'admin'], 'login.html');
+    const profile = await requireRole(['advisor', 'admin'], 'login.html');
     if (!profile) return;
 
     // Populate header name + role badge

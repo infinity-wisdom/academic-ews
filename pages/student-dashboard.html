@@ -195,17 +195,13 @@
 <span class="material-symbols-outlined">dashboard</span>
 <span>My Dashboard</span>
 </a>
-<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors border-l-4 border-transparent" href="profile.html">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors border-l-4 border-transparent" href="student-profile.html">
 <span class="material-symbols-outlined">person</span>
 <span>My Profile</span>
 </a>
-<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors border-l-4 border-transparent" href="interventions.html">
-<span class="material-symbols-outlined">support_agent</span>
-<span>My Support Plan</span>
-</a>
 </nav>
 <div class="px-4 py-4 space-y-1 border-t border-white/10 mt-auto">
-<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors" href="settings.html">
+<a class="flex items-center space-x-3 px-3 py-2 rounded-lg text-on-primary-container opacity-70 hover:opacity-100 hover:bg-white/5 transition-colors" href="student-settings.html">
 <span class="material-symbols-outlined">settings</span>
 <span>Settings</span>
 </a>
@@ -318,13 +314,13 @@
 <h3 class="font-headline-h3 text-headline-h3 text-on-surface mb-3">Recommended Support</h3>
 <p class="font-body-md text-body-md text-on-surface-variant mb-4">Based on your CS101 performance, your advisor suggests the following resources.</p>
 <div class="flex flex-wrap gap-3">
-<a class="flex items-center space-x-2 px-4 py-2 border border-outline-variant rounded-lg text-on-surface font-label-sm text-label-sm hover:bg-surface-container-low transition-colors" href="interventions.html">
+<a class="flex items-center space-x-2 px-4 py-2 border border-outline-variant rounded-lg text-on-surface font-label-sm text-label-sm hover:bg-surface-container-low transition-colors" href="student-settings.html">
 <span class="material-symbols-outlined text-sm">groups</span>
 <span>Join a Study Group</span>
 </a>
-<a class="flex items-center space-x-2 px-4 py-2 border border-outline-variant rounded-lg text-on-surface font-label-sm text-label-sm hover:bg-surface-container-low transition-colors" href="interventions.html">
+<a class="flex items-center space-x-2 px-4 py-2 border border-outline-variant rounded-lg text-on-surface font-label-sm text-label-sm hover:bg-surface-container-low transition-colors" href="mailto:" id="contact-advisor-link">
 <span class="material-symbols-outlined text-sm">schedule</span>
-<span>Book Advisor Office Hours</span>
+<span>Contact Your Advisor</span>
 </a>
 </div>
 </div>
@@ -348,6 +344,18 @@
             e.preventDefault();
             signOutAndRedirect('login.html');
         });
+
+        // "Contact Your Advisor" — link to their assigned advisor's email, if any
+        if (profile.advisor_id) {
+            const { data: advisor } = await window.supabaseClient
+                .from('profiles')
+                .select('email')
+                .eq('id', profile.advisor_id)
+                .single();
+            if (advisor) {
+                document.getElementById('contact-advisor-link').href = `mailto:${advisor.email}`;
+            }
+        }
 
         // Latest risk score
         const { data: risk } = await window.supabaseClient

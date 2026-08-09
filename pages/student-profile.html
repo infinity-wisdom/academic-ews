@@ -171,19 +171,19 @@
 </div>
 <!-- Navigation Links -->
 <nav class="flex-1 overflow-y-auto py-6 flex flex-col gap-1 px-3">
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 rounded-lg group" href="advisor-dashboard.html">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 rounded-lg group" href="advisor-dashboard.html" id="nav-dashboard-link">
 <span class="material-symbols-outlined group-hover:text-white transition-colors" data-icon="dashboard">dashboard</span>
 <span class="font-label-sm text-label-sm group-hover:text-white transition-colors">Dashboard</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 bg-white/10 border-l-4 border-secondary text-surface-container-lowest rounded-r-lg group" href="profile.html">
+<a class="flex items-center gap-3 px-4 py-3 bg-white/10 border-l-4 border-secondary text-surface-container-lowest rounded-r-lg group" href="profile.html" id="nav-profile-link">
 <span class="material-symbols-outlined" data-icon="person" data-weight="fill">person</span>
 <span class="font-label-sm text-label-sm">Profile</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 rounded-lg group" href="settings.html">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 rounded-lg group" href="settings.html" id="nav-settings-link">
 <span class="material-symbols-outlined group-hover:text-white transition-colors" data-icon="settings">settings</span>
 <span class="font-label-sm text-label-sm group-hover:text-white transition-colors">Settings</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 rounded-lg group" href="settings.html">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:bg-white/5 transition-colors duration-200 rounded-lg group" href="settings.html" id="nav-support-link">
 <span class="material-symbols-outlined group-hover:text-white transition-colors" data-icon="help">help</span>
 <span class="font-label-sm text-label-sm group-hover:text-white transition-colors">Support</span>
 </a>
@@ -453,7 +453,7 @@
 </div>
 <div class="space-y-4">
 <!-- Academic Success Center -->
-<a class="block p-4 rounded-lg border border-outline-variant/50 hover:bg-surface-container transition-colors group" href="interventions.html">
+<a class="block p-4 rounded-lg border border-outline-variant/50 hover:bg-surface-container transition-colors group" href="interventions.html" id="academic-success-link">
 <div class="flex items-start gap-3">
 <span class="material-symbols-outlined text-secondary mt-0.5 group-hover:scale-110 transition-transform" data-icon="auto_stories">auto_stories</span>
 <div>
@@ -467,21 +467,21 @@
 </a>
 <!-- Advisor Contact -->
 <div class="p-4 rounded-lg bg-surface-bright border border-outline-variant/30">
-<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-4">Your Academic Advisor</h4>
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-4">Academic Advisor</h4>
 <div class="flex items-center gap-3 mb-4">
 <div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant shrink-0">
 <img alt="Advisor Avatar" class="w-full h-full object-cover" data-alt="A small, professional headshot of an older, welcoming female academic advisor. She is wearing professional attire. The background is a soft, blurred office setting. The lighting is bright and clear, matching the light mode aesthetic of the surrounding UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkHIjdFkpKcSESxMZFlYKaMNIJFrDZEBZDSG7TBxRcGrUmVTfbSAAfcQHfAbBpDHuCzclVld6l0QZRplYzX_DGNFUMJYp89ddFWz6d35s4F3jUr8Dq6c5pnEDK7aiHd7pHno4bkZ5rt27cOG1KaYfrPJemGUVkHBYw3wyfA5-rFpt5yn15IF9_tL8HEb9sCoenTa2lwTIwO-je6TB1_ouTsUaQ_9UW91Z5ymA08y9dTBCQxrFeKPJsnnBZjQO0Xu3FO5mCq9xf0lo"/>
 </div>
 <div>
-<p class="font-label-sm text-label-sm text-primary font-semibold">Dr. Sarah Jenkins</p>
-<p class="font-caption-xs text-caption-xs text-on-surface-variant">Computer Science Dept.</p>
+<p class="font-label-sm text-label-sm text-primary font-semibold" id="advisor-name">Your Advisor</p>
+<p class="font-caption-xs text-caption-xs text-on-surface-variant" id="advisor-dept">Academic Advising</p>
 </div>
 </div>
 <div class="flex flex-col gap-2">
-<a class="w-full py-2 px-4 rounded bg-surface-container border border-outline-variant hover:bg-surface-container-high transition-colors text-center font-label-sm text-label-sm text-primary flex items-center justify-center gap-2" href="mailto:s.jenkins@edutrack.edu">
+<a class="w-full py-2 px-4 rounded bg-surface-container border border-outline-variant hover:bg-surface-container-high transition-colors text-center font-label-sm text-label-sm text-primary flex items-center justify-center gap-2" href="mailto:" id="email-advisor-link">
 <span class="material-symbols-outlined text-[18px]">mail</span> Email Advisor
                                         </a>
-<a class="w-full py-2 px-4 rounded bg-secondary text-white hover:bg-secondary/90 transition-colors text-center font-label-sm text-label-sm shadow-sm flex items-center justify-center gap-2" href="interventions.html">
+<a class="hidden w-full py-2 px-4 rounded bg-secondary text-white hover:bg-secondary/90 transition-colors text-center font-label-sm text-label-sm shadow-sm items-center justify-center gap-2" href="interventions.html" id="schedule-meeting-link">
 <span class="material-symbols-outlined text-[18px]">calendar_month</span> Schedule Meeting
                                         </a>
 </div>
@@ -498,19 +498,47 @@
 <script src="../assets/js/auth.js"></script>
 <script>
     (async () => {
-        const profile = await requireRole(['advisor', 'admin'], 'login.html');
+        const profile = await requireRole(['student', 'advisor', 'admin'], 'login.html');
         if (!profile) return;
 
+        const isStudent = profile.role === 'student';
         const logoutTarget = profile.role === 'admin' ? 'admin-login.html' : 'login.html';
         document.getElementById('profile-logout-link').addEventListener('click', (e) => {
             e.preventDefault();
             signOutAndRedirect(logoutTarget);
         });
 
-        // Which student are we viewing? Passed as ?id=<uuid> from the
-        // advisor dashboard roster ("Students" link) or Analyze button.
-        const params = new URLSearchParams(window.location.search);
-        const studentId = params.get('id');
+        // --- Adapt sidebar nav for role ---
+        if (isStudent) {
+            document.getElementById('nav-dashboard-link').setAttribute('href', 'student-dashboard.html');
+            document.getElementById('nav-profile-link').setAttribute('href', 'student-profile.html');
+            document.getElementById('nav-settings-link').setAttribute('href', 'student-settings.html');
+            document.getElementById('nav-support-link').setAttribute('href', 'student-settings.html');
+
+            // Students never get a path into interventions.html
+            document.getElementById('academic-success-link').setAttribute('href', 'student-settings.html');
+            document.getElementById('schedule-meeting-link').remove();
+        } else {
+            // Advisor/admin viewing a student's profile can jump into
+            // Interventions for that student.
+            const scheduleLink = document.getElementById('schedule-meeting-link');
+            scheduleLink.classList.remove('hidden');
+            scheduleLink.classList.add('flex');
+        }
+
+        // Which student are we viewing?
+        // - Students always see their own profile (id is never taken from the
+        //   URL for them, so they can never view another student's record by
+        //   editing the address bar).
+        // - Advisors/admins view whoever was passed as ?id=<uuid> from the
+        //   roster or Analyze button.
+        let studentId;
+        if (isStudent) {
+            studentId = profile.id;
+        } else {
+            const params = new URLSearchParams(window.location.search);
+            studentId = params.get('id');
+        }
 
         if (!studentId) {
             document.getElementById('student-name').textContent = 'No student selected';
@@ -521,7 +549,7 @@
         const { data: student, error } = await window.supabaseClient
             .from('profiles')
             .select(`
-                full_name, student_id, avatar_url,
+                full_name, student_id, avatar_url, advisor_id,
                 enrollments ( current_grade, attendance_rate, status, courses ( code, name ) ),
                 risk_scores ( score, level, calculated_at )
             `)
@@ -533,7 +561,7 @@
             return;
         }
 
-        document.getElementById('student-name').textContent = student.full_name;
+        document.getElementById('student-name').textContent = isStudent ? 'My Academic Profile' : student.full_name;
         document.getElementById('student-id-field').textContent = `ID: ${student.student_id || '—'}`;
 
         // Approximate GPA from average grade (100pt scale -> 4.0 scale)
@@ -541,6 +569,19 @@
         if (enrollments.length > 0) {
             const avgGrade = enrollments.reduce((s, e) => s + (e.current_grade || 0), 0) / enrollments.length;
             document.getElementById('student-gpa').textContent = (avgGrade / 25).toFixed(1);
+        }
+
+        // Populate the advisor contact card with the real assigned advisor
+        if (student.advisor_id) {
+            const { data: advisor } = await window.supabaseClient
+                .from('profiles')
+                .select('full_name, email')
+                .eq('id', student.advisor_id)
+                .single();
+            if (advisor) {
+                document.getElementById('advisor-name').textContent = advisor.full_name;
+                document.getElementById('email-advisor-link').href = `mailto:${advisor.email}`;
+            }
         }
     })();
 </script>
